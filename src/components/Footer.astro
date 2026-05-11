@@ -1,0 +1,57 @@
+---
+const pages = [
+  { href: '/', label: 'Home' },
+  { href: '/menu', label: 'Menu' },
+  { href: '/about', label: 'About' },
+  { href: '/reviews', label: 'Reviews' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/reserve', label: 'Reserve' },
+];
+
+const social = [
+  { href: 'https://instagram.com/frannysfarmtable', label: 'Instagram' },
+  { href: 'https://facebook.com/Frannysfarmtable', label: 'Facebook' },
+  { href: 'https://yelp.com/biz/frannys-farm-table-placerville', label: 'Yelp' },
+  { href: 'https://frannysfarmtable.co', label: 'Website' },
+];
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand-name">Franny's Farm Table</p>
+        <p class="footer-brand-desc">
+          We make everything in-house, using locally sourced ingredients in a historic building on Main Street, Placerville. Established 2023.
+        </p>
+      </div>
+
+      <div>
+        <span class="footer-col-title">Pages</span>
+        <ul class="footer-links" role="list">
+          {pages.map(p => (
+            <li><a href={p.href}>{p.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <span class="footer-col-title">Connect</span>
+        <ul class="footer-links" role="list">
+          {social.map(s => (
+            <li>
+              <a href={s.href} rel="noopener noreferrer" target="_blank">
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copyright">© 2025 Franny's Farm Table</span>
+      <span class="footer-address">311 Main St, Placerville CA &middot; (530) 748-3671</span>
+    </div>
+  </div>
+</footer>

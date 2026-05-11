@@ -1,0 +1,191 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+
+const timeSlots = [
+  '11:00 AM', '11:30 AM',
+  '12:00 PM', '12:30 PM',
+  '1:00 PM', '1:30 PM',
+  '2:00 PM', '2:30 PM',
+  '3:00 PM', '3:30 PM',
+  '4:00 PM', '4:30 PM',
+  '5:00 PM', '5:30 PM',
+  '6:00 PM', '6:30 PM',
+  '7:00 PM', '7:30 PM',
+];
+---
+
+<Base
+  title="Reservations"
+  description="Reserve a table at Franny's Farm Table. 311 Main Street, Placerville CA. Open Mon-Sun. Call (530) 748-3671 or book online."
+  slug="reserve"
+  breadcrumb="Reserve"
+>
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-label">Reservations</p>
+      <h1 class="page-hero-title">Save your seat</h1>
+    </div>
+  </div>
+
+  <section class="section" aria-label="Reservation form and contact details">
+    <div class="grid-2">
+      <Reveal>
+        <div>
+          <form class="reserve-form" id="reserve-form" novalidate aria-label="Reservation request form">
+            <div class="form-field">
+              <label for="name">Name <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                autocomplete="name"
+                placeholder="Your full name"
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">Email <span aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone <span aria-hidden="true">*</span></label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  autocomplete="tel"
+                  placeholder="(530) 000-0000"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="date">Date <span aria-hidden="true">*</span></label>
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="time">Time <span aria-hidden="true">*</span></label>
+                <select id="time" name="time" required>
+                  <option value="" disabled selected>Select time</option>
+                  {timeSlots.map(slot => (
+                    <option value={slot}>{slot}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="party-size">Party Size <span aria-hidden="true">*</span></label>
+              <select id="party-size" name="partySize" required>
+                <option value="" disabled selected>Select party size</option>
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+                <option value="7">7+ Guests</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="requests">Special Requests</label>
+              <textarea
+                id="requests"
+                name="requests"
+                placeholder="Dietary needs, seating preference, etc."
+                rows="3"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn" id="submit-btn">Request Reservation</button>
+          </form>
+
+          <div class="form-confirmation" id="form-confirmation" style="display: none;" role="alert" aria-live="polite">
+            <p class="form-confirmation-title">Request received.</p>
+            <p class="form-confirmation-body">
+              We'll reach out to confirm your reservation at (530) 748-3671 or frannysfarmtable@gmail.com. See you soon.
+            </p>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal delay={100}>
+        <div class="info-card">
+          <div class="info-card-section">
+            <span class="info-card-label">Address</span>
+            <p class="info-card-value">311 Main Street<br />Placerville, CA 95667</p>
+          </div>
+
+          <hr class="info-card-divider" />
+
+          <div class="info-card-section">
+            <span class="info-card-label">Phone</span>
+            <p class="info-card-value"><a href="tel:+15307483671">(530) 748-3671</a></p>
+          </div>
+
+          <div class="info-card-section">
+            <span class="info-card-label">Email</span>
+            <p class="info-card-value"><a href="mailto:frannysfarmtable@gmail.com">frannysfarmtable@gmail.com</a></p>
+          </div>
+
+          <hr class="info-card-divider" />
+
+          <div class="info-card-section">
+            <span class="info-card-label">Hours</span>
+            <p class="info-card-value">Mon&ndash;Thu 11 AM &ndash; 8 PM<br />Friday 11 AM &ndash; 9 PM<br />Sat&ndash;Sun 9 AM &ndash; 9 PM<br />Weekend Brunch 9 AM &ndash; 12 PM</p>
+          </div>
+
+          <hr class="info-card-divider" />
+
+          <div class="info-card-section">
+            <span class="info-card-label">Features</span>
+            <p class="info-card-value">Reservations &middot; Takeout &middot; Delivery<br />Dog Friendly &middot; Free Wifi<br />Wheelchair Accessible<br />Wine &amp; Beer &middot; Gift Cards</p>
+          </div>
+
+          <hr class="info-card-divider" />
+
+          <div class="info-card-section">
+            <span class="info-card-label">Website</span>
+            <p class="info-card-value"><a href="https://frannysfarmtable.co" rel="noopener noreferrer" target="_blank">frannysfarmtable.co</a></p>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('reserve-form') as HTMLFormElement;
+  const confirmation = document.getElementById('form-confirmation') as HTMLElement;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    form.style.display = 'none';
+    confirmation.style.display = 'block';
+    confirmation.focus();
+  });
+</script>

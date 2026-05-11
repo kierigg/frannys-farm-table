@@ -1,0 +1,91 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '../styles/components.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  isHome?: boolean;
+  slug?: string;
+  breadcrumb?: string;
+}
+
+const {
+  title,
+  description = "Franny's Farm Table. Everything made in-house at 311 Main Street in Placerville, CA.",
+  isHome = false,
+  slug = '',
+  breadcrumb,
+} = Astro.props;
+
+const siteUrl = 'https://frannysfarmtable.co';
+const canonical = slug ? `${siteUrl}/${slug}` : siteUrl;
+const ogImage = `${siteUrl}/og-image.jpg`;
+const pageTitle = isHome ? "Franny's Farm Table — From-Scratch Restaurant in Placerville, CA" : `${title} — Franny's Farm Table`;
+
+const breadcrumbSchema = !isHome && breadcrumb ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${siteUrl}/` },
+    { "@type": "ListItem", "position": 2, "name": breadcrumb, "item": canonical }
+  ]
+}) : null;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2a2a24" />
+    <meta name="robots" content="index, follow" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Franny's Farm Table" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+    <!-- Replace og-image.jpg with actual restaurant photo -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Libre+Franklin:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/16.png" />
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={breadcrumbSchema} />
+    )}
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Nav isHome={isHome} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,430 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+
+const categories = [
+  {
+    id: 'for-the-table',
+    label: 'For the Table',
+    note: '',
+    items: [
+      { name: 'Ahi Appetizer', desc: 'Peppercorn & ginger rubbed ahi, pan seared with roasted red peppers, sundried tomatoes, cucumber wasabi', price: '$22' },
+      { name: 'Crab Dip', desc: 'Chives, onion, bell pepper, celery, blended with crab cream cheese, mixed cheese, baked to order', price: '$24' },
+      { name: 'Beer Battered Artichoke Hearts', desc: 'Kabru IPA battered, tossed with garlic & parmesan, house-made aioli', price: '$16' },
+      { name: 'French Fry App', desc: 'House-seasoned fries', price: '$7' },
+      { name: 'Garlic Cheese Bread', desc: 'Italian-style pan bread, baked with garlic & mozzarella', price: '$10' },
+      { name: 'Garlic Fries App', desc: 'Fries tossed in garlic, olive oil & seasonings with zesty ranch', price: '$10' },
+      { name: 'Portobello Mushroom', desc: 'Balsamic roasted, stuffed with artichoke hearts, red bell pepper, mozzarella over spring mix', price: '$18' },
+      { name: 'Spinach Dip', desc: 'Fresh spinach, artichokes & roasted garlic, baked with parmesan & mozzarella, served with focaccia', price: '$18' },
+      { name: 'Thai Chicken Bites', desc: 'Bite-size chicken tenders in sweet Thai chili sauce, sesame seeds & green onions', price: '$16' },
+      { name: 'Warm Artisan Bread', desc: 'EVOO, balsamic vinegar, garlic, pepper flake & parsley', price: '$10' },
+    ],
+  },
+  {
+    id: 'farm-greens',
+    label: 'Farm Greens',
+    note: 'Add grilled chicken, prawns, steak, or salmon.',
+    items: [
+      { name: 'Asian Chicken Salad', desc: 'Chicken breast, mandarin oranges, crispy wontons, rice noodles, toasted almonds, sesame dressing', price: '$24' },
+      { name: 'BBQ Chicken Salad', desc: 'Lettuce, tomato, corn, black beans, chips, mixed cheese, tortilla strips, ranch & BBQ chicken', price: '$24' },
+      { name: 'Caesar', desc: 'Romaine tossed with creamy Caesar dressing', price: '$16' },
+      { name: 'Chipotle Salad', desc: 'Romaine with chipotle chicken, smoked bacon, mixed cheese, tomatoes, tortilla strips, honey mustard', price: '$22' },
+      { name: 'Panzanella Salad', desc: 'Spring mix, shaved red onion, avocado, cucumber, watermelon radish, house-made croutons, red wine vinaigrette', price: '$22' },
+      { name: 'Seared Ahi Salad', desc: 'Spring mix, toasted almonds, craisins, crispy wontons, rice noodles, seared ahi', price: '$25' },
+      { name: 'Spinach Salad', desc: 'Fresh spinach, mushrooms, red onions, bacon, tomato, egg, honey mustard on the side', price: '$20' },
+      { name: 'Spring Mix', desc: 'Spring mix with blue cheese, cherry tomatoes, craisins, walnuts, balsamic vinaigrette', price: '$18' },
+      { name: 'Taco Salad', desc: 'Lettuce, ranch, mixed cheese, corn, black beans, tomato, tortilla strips, seasoned meat', price: '$24' },
+      { name: 'Wedge', desc: 'Iceberg with bacon, egg, avocado, cherry tomatoes, blue cheese crumbles', price: '$18' },
+    ],
+  },
+  {
+    id: 'soup',
+    label: 'Soup',
+    note: '',
+    items: [
+      { name: 'Cup of Soup', desc: "House-made, ask your server for today's selection", price: '$7' },
+      { name: 'Bowl of Soup', desc: "House-made, ask your server for today's selection", price: '$12' },
+      { name: 'Sourdough Bowl', desc: 'House-made soup in a toasted sourdough bowl', price: '$15' },
+    ],
+  },
+  {
+    id: 'handhelds',
+    label: 'Handhelds',
+    note: 'Served with fries. Sub house salad or Caesar. GF bun $3.',
+    items: [
+      { name: "Franny's Burger", desc: 'Lettuce, tomato, pickle, house dressing on a toasted bun', price: '$18' },
+      { name: 'Bacon & Blue Burger', desc: 'Harris Ranch 1/2 lb, bacon, cheddar & blue cheese, onion strings, avocado, garlic aioli', price: '$25' },
+      { name: 'Garlic & Mushroom Burger', desc: 'Sauteed garlic mushrooms, lettuce, tomato, garlic mayo', price: '$20' },
+      { name: 'PB&J Burger', desc: 'Harris Ranch 1/2 lb, cheddar, bacon, fried onion strings, peanut butter, chipotle jam', price: '$22' },
+      { name: 'B.L.A.S.T.', desc: 'Bacon, lettuce, avocado, Swiss, tomato with mayo on grilled focaccia', price: '$20' },
+      { name: 'Chicken & Pesto', desc: 'Sliced chicken breast, sauteed peppers & onions, creamy pesto, baked with mozzarella on focaccia', price: '$24' },
+      { name: 'Crab Melt', desc: 'Snow crab salad with bell peppers, onion, celery, open faced with tomato, melted cheese, avocado on sourdough', price: '$28' },
+      { name: 'Fried Chicken Sandwich', desc: 'Cajun battered chicken, jalapeno jack, lettuce, tomato, onion, zesty ranch', price: '$20' },
+      { name: 'Grilled Chicken Sandwich', desc: 'Grilled chicken on sourdough, lettuce, tomato, onion, avocado, Swiss, bacon, ranch', price: '$24' },
+      { name: 'Prime Rib Dip', desc: 'Thinly sliced prime rib, Swiss, grilled sourdough, roasted garlic aioli, au jus, fries', price: '$24' },
+      { name: 'Reuben on Rye', desc: 'Grilled rye, house-made 1000 island, corned beef, sauerkraut, Swiss', price: '$22' },
+      { name: '5 Cheese Grilled Cheese', desc: 'Five cheeses on garlic buttered focaccia, served with fries', price: '$15' },
+    ],
+  },
+  {
+    id: 'wraps',
+    label: 'Wraps',
+    note: 'Served with fresh fruit.',
+    items: [
+      { name: 'Asian Chicken Wrap', desc: 'Chicken, mandarin oranges, wontons, rice noodles, toasted almonds, lettuce, sesame dressing', price: '$24' },
+      { name: 'BBQ Chicken Wrap', desc: 'Chicken, lettuce, tomato, corn, black beans, chips, cheese, tortilla strips, ranch & BBQ', price: '$24' },
+      { name: 'Caesar Wrap', desc: 'Romaine, parmesan, croutons, Caesar dressing', price: '$18' },
+      { name: 'Chipotle Chicken Wrap', desc: 'Chicken & bacon, chipotle seasoning, lettuce, cheese, tomatoes, tortilla strips, honey mustard', price: '$24' },
+      { name: 'Veggie Wrap', desc: 'Lettuce, cheese, chips, corn, black beans, tomato, avocado, honey mustard', price: '$20' },
+    ],
+  },
+  {
+    id: 'tacos',
+    label: 'Tacos',
+    note: 'Corn tortillas available on request.',
+    items: [
+      { name: 'Ahi Tacos', desc: 'Seared ahi, Japanese cucumber salad, cucumber wasabi, corn & flour blend tortillas', price: '$24' },
+      { name: 'Crispy Fish Tacos', desc: 'Beer-battered cod, honey mustard coleslaw, house tartar sauce', price: '$22' },
+      { name: 'Irish Tacos', desc: 'Coleslaw with house-made 1000 island, corned beef & sauerkraut', price: '$22' },
+      { name: 'Prawn Tacos', desc: 'Prawns sauteed in house-made salsa, cabbage, mixed cheese', price: '$22' },
+      { name: 'Steak Tacos', desc: 'Steak sauteed in house-made salsa, cheddar & jack, shredded cabbage', price: '$24' },
+      { name: 'Surf & Turf Tacos', desc: 'Steak & prawns sauteed in house-made salsa, cheddar & jack, cabbage', price: '$24' },
+    ],
+  },
+  {
+    id: 'features',
+    label: 'Features',
+    note: '',
+    items: [
+      { name: 'Fish & Chips', desc: 'Beer battered cod, seasoned fries, honey walnut coleslaw, house-made tartar', price: '$25' },
+    ],
+  },
+  {
+    id: 'fork-and-knife',
+    label: 'Fork & Knife',
+    note: 'Pasta dishes served with focaccia. GF pasta +$3.',
+    items: [
+      { name: 'Atlantic Salmon', desc: 'Pan-seared, served with pea & pancetta risotto', price: '$36' },
+      { name: 'Baked Cavatappi', desc: 'Creamy marinara with pepperoni, garlic & sherry, baked with mozzarella', price: '$25' },
+      { name: 'Chipotle Pasta', desc: 'Cavatappi with chicken, smoked bacon, spinach, creamy chipotle sauce', price: '$28' },
+      { name: 'Fettuccini Alfredo', desc: 'House-made alfredo, topped with parmesan', price: '$22' },
+      { name: 'Fettuccini Con Pollo', desc: 'Bacon & sherry garlic cream sauce, fresh asparagus, sliced chicken', price: '$28' },
+      { name: 'Jambalaya Fettuccini', desc: 'Spicy Cajun sauce, chicken, shrimp, prawns, andouille sausage, tomatoes, peppers', price: '$36' },
+      { name: 'Loaded Mac & Cheese', desc: 'Corkscrew pasta, melted cheese & bacon, baked, topped with sour cream & green onions', price: '$24' },
+      { name: 'Pasta Primavera', desc: 'Vegetable medley in garlic & white wine sauce with fettuccine', price: '$24' },
+      { name: 'Ribeye', desc: 'Certified Angus, fingerling potatoes, fresh vegetables, chimichurri', price: '$49' },
+      { name: "Rocky's 1/2 Chicken", desc: 'Pan seared, chipotle cream sauce, brown butter sweet potato puree, Swiss chard', price: '$36' },
+      { name: 'Seafood Cavatappi', desc: 'Crab, Atlantic salmon, garlic prawns in lemon cream sauce, baked with mozzarella', price: '$38' },
+      { name: 'Tortellini Pesto', desc: 'Cheese tortellini, creamy pesto, tomatoes, mushrooms, spinach, red onion, parmesan', price: '$26' },
+    ],
+  },
+  {
+    id: 'kids',
+    label: 'Kids',
+    note: 'All items $8–$10.',
+    items: [
+      { name: 'Kids Burger', desc: 'Served with fries', price: '$10' },
+      { name: 'Kids Chicken Fingers', desc: 'Served with fries', price: '$8' },
+      { name: 'Kids Grilled Cheese', desc: 'Served with fries', price: '$8' },
+      { name: 'Kids Corn Dog', desc: 'Served with fries', price: '$8' },
+      { name: 'Kids Cheesy Pasta', desc: 'Curly pasta in cheesy cream sauce with focaccia', price: '$8' },
+      { name: 'Kids Pasta Butter & Parm', desc: 'Fettuccini with butter and parmesan', price: '$8' },
+      { name: 'Kids Pasta Marinara', desc: 'House-made marinara with pasta and focaccia', price: '$8' },
+    ],
+  },
+  {
+    id: 'desserts',
+    label: 'Desserts',
+    note: '',
+    items: [
+      { name: 'Cheesecake', desc: 'Rich, creamy, lightly sweet, slightly tangy', price: '$9' },
+      { name: 'Chocolate Chip Banana Bread', desc: 'House-made, served warm with vanilla bean ice cream', price: '$9' },
+      { name: 'Chocolate Mousse', desc: 'House-made, light and intensely chocolate, fresh whipped cream', price: '$9' },
+      { name: 'Cookie Nom Nom', desc: 'Warm chocolate chip cookie, add vanilla bean or chocolate brownie salted caramel ice cream', price: '$10' },
+      { name: 'Red Velvet Cookie Nom Nom', desc: 'Warm red velvet cookie with chocolate and white chocolate chips', price: '$10' },
+      { name: 'Strawberry Shortcake', desc: 'Angel food cake, fresh whipped cream, sliced strawberries', price: '$10' },
+      { name: 'Ice Cream Cup', desc: 'Vanilla bean or chocolate brownie salted caramel', price: '$5' },
+      { name: 'Ice Cream Bowl', desc: 'Vanilla bean or chocolate brownie salted caramel', price: '$8' },
+      { name: 'Ice Cream Sundae', desc: 'Vanilla bean or chocolate brownie salted caramel', price: '$10' },
+    ],
+  },
+  {
+    id: 'sides',
+    label: 'Sides',
+    note: '',
+    items: [
+      { name: 'Bowl of Fruit', desc: 'Fresh seasonal fruit medley', price: '$8' },
+      { name: 'Cup of Fruit', desc: 'Seasonal fruit', price: '$5' },
+      { name: 'House Side Caesar', desc: 'Romaine, parmesan, house-made croutons, Caesar dressing', price: '$7' },
+      { name: 'House Side Salad', desc: 'Spring mix, carrots, cherry tomato, mixed cheese, croutons', price: '$6' },
+      { name: 'House Side Wedge', desc: 'Iceberg, egg, tomato, blue cheese crumbles, bacon, avocado', price: '$10' },
+      { name: 'Side of Chicken Breast', desc: 'Grilled chicken breast', price: '$7' },
+      { name: 'Side of Coleslaw', desc: 'Shredded cabbage and carrots in creamy dressing', price: '$4' },
+      { name: 'Side of Focaccia', desc: '', price: '$5' },
+      { name: 'Side of Fries', desc: 'House-seasoned', price: '$5' },
+      { name: 'Side of Garlic Fries', desc: 'Tossed with roasted garlic and herbs', price: '$7' },
+      { name: 'Side of Sourdough Roll', desc: '', price: '$5' },
+      { name: 'Side Patty', desc: 'Seasoned beef patty', price: '$7' },
+      { name: 'Side Veggies', desc: 'Seasonal, lightly seasoned', price: '$6' },
+    ],
+  },
+  {
+    id: 'drinks',
+    label: 'Drinks',
+    note: '',
+    items: [],
+    subgroups: [
+      {
+        label: 'Coffee & Juice',
+        items: [
+          { name: 'Coffee', price: '$4' },
+          { name: 'Decaf Coffee', price: '$4' },
+          { name: 'Hot Tea', price: '$4' },
+          { name: 'Hot Chocolate', price: '$4' },
+          { name: 'Orange Juice', price: '$4' },
+          { name: 'Apple Juice', price: '$4' },
+          { name: 'Cranberry Juice', price: '$4' },
+          { name: 'Milk', price: '$4' },
+        ],
+      },
+      {
+        label: 'Soda & More',
+        items: [
+          { name: 'Coke', price: '$4' },
+          { name: 'Diet Coke', price: '$4' },
+          { name: 'Sprite', price: '$4' },
+          { name: 'Mr. Pibb', price: '$4' },
+          { name: 'Root Beer', price: '$4' },
+          { name: 'Lemonade', price: '$4' },
+          { name: 'Iced Tea', price: '$4' },
+          { name: 'Arnold Palmer', price: '$4' },
+          { name: 'Shirley Temple', price: '$4' },
+          { name: 'Soda Water', price: '$3' },
+          { name: 'Pellegrino', price: '$6' },
+          { name: 'Root Beer Float', price: '$7.50' },
+          { name: 'Water', price: '$3' },
+        ],
+      },
+    ],
+  },
+];
+
+const menuSchema = {
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Franny's Farm Table Menu",
+  "hasMenuSection": [
+    {
+      "@type": "MenuSection",
+      "name": "For the Table",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Ahi Appetizer", "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Crab Dip", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Beer Battered Artichoke Hearts", "offers": { "@type": "Offer", "price": "16.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Garlic Cheese Bread", "offers": { "@type": "Offer", "price": "10.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Portobello Mushroom", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Spinach Dip", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Thai Chicken Bites", "offers": { "@type": "Offer", "price": "16.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Warm Artisan Bread", "offers": { "@type": "Offer", "price": "10.00", "priceCurrency": "USD" } }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Farm Greens",
+      "description": "Add grilled chicken, prawns, steak, or salmon.",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Asian Chicken Salad", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "BBQ Chicken Salad", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Caesar", "offers": { "@type": "Offer", "price": "16.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Chipotle Salad", "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Seared Ahi Salad", "offers": { "@type": "Offer", "price": "25.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Spinach Salad", "offers": { "@type": "Offer", "price": "20.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Spring Mix", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Taco Salad", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Wedge", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "USD" } }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Soup",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Cup of Soup", "offers": { "@type": "Offer", "price": "7.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Bowl of Soup", "offers": { "@type": "Offer", "price": "12.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Sourdough Bowl", "offers": { "@type": "Offer", "price": "15.00", "priceCurrency": "USD" } }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Handhelds",
+      "description": "Served with fries. Sub house salad or Caesar. GF bun $3.",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Franny's Burger", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Bacon & Blue Burger", "offers": { "@type": "Offer", "price": "25.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Garlic & Mushroom Burger", "offers": { "@type": "Offer", "price": "20.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "PB&J Burger", "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "B.L.A.S.T.", "offers": { "@type": "Offer", "price": "20.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Chicken & Pesto", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Crab Melt", "offers": { "@type": "Offer", "price": "28.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Fried Chicken Sandwich", "offers": { "@type": "Offer", "price": "20.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Grilled Chicken Sandwich", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Prime Rib Dip", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Reuben on Rye", "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "5 Cheese Grilled Cheese", "offers": { "@type": "Offer", "price": "15.00", "priceCurrency": "USD" } }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Wraps",
+      "description": "Served with fresh fruit.",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Asian Chicken Wrap", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "BBQ Chicken Wrap", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Caesar Wrap", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Chipotle Chicken Wrap", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Veggie Wrap", "offers": { "@type": "Offer", "price": "20.00", "priceCurrency": "USD" } }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Tacos",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Ahi Tacos", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Crispy Fish Tacos", "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Irish Tacos", "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Prawn Tacos", "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Steak Tacos", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Surf & Turf Tacos", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Features",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Fish & Chips", "offers": { "@type": "Offer", "price": "25.00", "priceCurrency": "USD" } }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Fork & Knife",
+      "description": "Pasta dishes served with focaccia. GF pasta +$3.",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Atlantic Salmon", "offers": { "@type": "Offer", "price": "36.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Baked Cavatappi", "offers": { "@type": "Offer", "price": "25.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Chipotle Pasta", "offers": { "@type": "Offer", "price": "28.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Fettuccini Alfredo", "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Fettuccini Con Pollo", "offers": { "@type": "Offer", "price": "28.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Jambalaya Fettuccini", "offers": { "@type": "Offer", "price": "36.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Loaded Mac & Cheese", "description": "Guest favorite. Also available gluten-free.", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Pasta Primavera", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Ribeye", "offers": { "@type": "Offer", "price": "49.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Rocky's 1/2 Chicken", "offers": { "@type": "Offer", "price": "36.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Seafood Cavatappi", "offers": { "@type": "Offer", "price": "38.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Tortellini Pesto", "offers": { "@type": "Offer", "price": "26.00", "priceCurrency": "USD" } }
+      ]
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Desserts",
+      "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Cheesecake", "offers": { "@type": "Offer", "price": "9.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Chocolate Chip Banana Bread", "offers": { "@type": "Offer", "price": "9.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Chocolate Mousse", "offers": { "@type": "Offer", "price": "9.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Cookie Nom Nom", "offers": { "@type": "Offer", "price": "10.00", "priceCurrency": "USD" } },
+        { "@type": "MenuItem", "name": "Strawberry Shortcake", "offers": { "@type": "Offer", "price": "10.00", "priceCurrency": "USD" } }
+      ]
+    }
+  ]
+};
+---
+
+<Base
+  title="Menu"
+  description="Full menu: appetizers, salads, soups, burgers, wraps, tacos, pasta, steak, salmon, kids menu, desserts, and drinks. Everything made in-house. GF options available. Placerville, CA."
+  slug="menu"
+  breadcrumb="Menu"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(menuSchema)} slot="head" />
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-label">Our Menu</p>
+      <h1 class="page-hero-title">Everything's made here</h1>
+    </div>
+  </div>
+
+  <section class="section" aria-label="Full menu">
+    <div class="menu-filter-bar" role="group" aria-label="Filter menu by category" id="menu-filters">
+      <button class="menu-filter-btn active" data-category="all">All</button>
+      {categories.map(cat => (
+        <button class="menu-filter-btn" data-category={cat.id}>{cat.label}</button>
+      ))}
+    </div>
+
+    <div id="menu-categories">
+      {categories.map(cat => (
+        <div class="menu-category" data-category-id={cat.id}>
+          <div class="menu-category-header">
+            <h2 class="menu-category-title">{cat.label}</h2>
+            {cat.note && <p class="menu-category-note">{cat.note}</p>}
+          </div>
+
+          {/* Standard items */}
+          {cat.items.length > 0 && (
+            <div>
+              {cat.items.map(item => (
+                <div class="menu-item">
+                  <div class="menu-item-left">
+                    <p class="menu-item-name">{item.name}</p>
+                    {item.desc && <p class="menu-item-desc">{item.desc}</p>}
+                  </div>
+                  {item.price && <span class="menu-item-price">{item.price}</span>}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Drinks subgroups */}
+          {cat.subgroups && cat.subgroups.map(group => (
+            <div class="menu-subgroup">
+              <p class="menu-subgroup-label">{group.label}</p>
+              {group.items.map(item => (
+                <div class="menu-item">
+                  <div class="menu-item-left">
+                    <p class="menu-item-name">{item.name}</p>
+                  </div>
+                  <span class="menu-item-price">{item.price}</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <p class="menu-footer-note">
+      Prices shown where available. Menu and pricing subject to change.
+    </p>
+  </section>
+</Base>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.menu-filter-btn');
+  const categories = document.querySelectorAll<HTMLElement>('.menu-category');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const selected = btn.dataset.category;
+
+      categories.forEach(cat => {
+        if (selected === 'all' || cat.dataset.categoryId === selected) {
+          cat.style.display = '';
+        } else {
+          cat.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

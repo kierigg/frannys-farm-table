@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+
+const photos = [
+  { label: 'Interior Dining Room', subject: 'Interior dining room, ground floor seating' },
+  { label: 'Upstairs Seating', subject: 'Upstairs seating area overlooking Main Street' },
+  { label: "Franny's Burger", subject: "Franny's Burger with fries" },
+  { label: 'Loaded Mac & Cheese', subject: 'Loaded Mac & Cheese, guest favorite' },
+  { label: 'Atlantic Salmon', subject: 'Atlantic Salmon with house-baked focaccia' },
+  { label: 'Eggs Benedict (Brunch)', subject: 'Eggs Benedict, weekend brunch' },
+  { label: 'Main Street Exterior', subject: 'Historic Main Street exterior, Placerville CA' },
+  { label: 'Artisan Bread', subject: 'House-baked artisan bread, fresh daily' },
+];
+---
+
+<Base
+  title="Photos"
+  description="Photos from inside Franny's Farm Table. Historic Main Street dining, house-made dishes, upstairs seating. Placerville, CA."
+  slug="gallery"
+  breadcrumb="Gallery"
+>
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-label">Gallery</p>
+      <h1 class="page-hero-title">Inside Franny's</h1>
+    </div>
+  </div>
+
+  <section class="section" aria-label="Photo gallery">
+    <Reveal>
+      <p class="section-body">
+        Photos from Franny's Farm Table. See more on our
+        <a href="https://instagram.com/frannysfarmtable" rel="noopener noreferrer" target="_blank" style="color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px;">Instagram</a>
+        or
+        <a href="https://yelp.com/biz/frannys-farm-table-placerville" rel="noopener noreferrer" target="_blank" style="color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px;">Yelp page</a>
+        (272+ photos).
+      </p>
+    </Reveal>
+
+    <div class="grid-gallery">
+      {photos.map((photo, i) => (
+        <Reveal delay={i * 50}>
+          <div
+            class="gallery-placeholder"
+            role="img"
+            aria-label={photo.subject}
+            data-label={photo.label}
+          ></div>
+        </Reveal>
+      ))}
+    </div>
+
+    <p class="menu-footer-note" style="margin-top: 2rem;">
+      All photos provided by the restaurant. Owner to upload final images.
+    </p>
+  </section>
+</Base>

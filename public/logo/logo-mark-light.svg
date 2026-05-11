@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <!-- Farmhouse mark — light version for dark nav/hero backgrounds -->
+  <polyline points="2,14 16,3 30,14" stroke="#faf8f5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="9.5" r="2.2" stroke="#faf8f5" stroke-width="1.2"/>
+  <rect x="4" y="14" width="24" height="15" stroke="#faf8f5" stroke-width="1.5" stroke-linejoin="round"/>
+  <rect x="10" y="19" width="5" height="10" stroke="#faf8f5" stroke-width="1.2"/>
+  <rect x="17" y="19" width="5" height="10" stroke="#faf8f5" stroke-width="1.2"/>
+</svg>

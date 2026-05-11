@@ -1,0 +1,22 @@
+---
+interface Props {
+  stars: number;
+  quote: string;
+  author: string;
+  source: string;
+  date: string;
+}
+const { stars, quote, author, source, date } = Astro.props;
+
+const filledStars = '★'.repeat(stars);
+const emptyStars = '☆'.repeat(5 - stars);
+---
+
+<article class="review-card">
+  <p class="review-stars" aria-label={`${stars} out of 5 stars`}>
+    <span aria-hidden="true">{filledStars}{emptyStars}</span>
+  </p>
+  <blockquote class="review-quote">"{quote}"</blockquote>
+  <p class="review-author">{author}</p>
+  <p class="review-source">{source} &middot; {date}</p>
+</article>

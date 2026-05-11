@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+---
+
+<Base
+  title="About"
+  description="Opened 2023 on Historic Main Street in Placerville. Two floors, dog-friendly, wheelchair accessible. Weekend brunch Sat-Sun 9 AM to noon."
+  slug="about"
+  breadcrumb="About"
+>
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-label">Our Story</p>
+      <h1 class="page-hero-title">Good food, made here, every day</h1>
+    </div>
+  </div>
+
+  <section class="section" aria-label="About Franny's Farm Table">
+    <div class="grid-2">
+      <Reveal>
+        <div>
+          <p class="section-body" style="margin-bottom: 1.5rem;">
+            Franny's Farm Table opened in 2023 in a historic building on Main Street in downtown Placerville. We make everything in-house. Soups, artisan bread, desserts, dressings. All of it, daily.
+          </p>
+          <p class="section-body" style="margin-bottom: 1.5rem;">
+            We buy from local producers and it shows up on the plate. The loaded mac &amp; cheese, the focaccia, a glass of wine from the El Dorado County wine region.
+          </p>
+          <p class="section-body" style="margin-bottom: 0;">
+            Two floors. Ground-level dining room and an upstairs area that overlooks Main Street. Dog-friendly, wheelchair accessible, free wifi. We take reservations, takeout, and delivery.
+          </p>
+        </div>
+      </Reveal>
+
+      <Reveal delay={100}>
+        <div
+          class="gallery-placeholder"
+          role="img"
+          aria-label="Interior of Franny's Farm Table dining room"
+          data-label="Interior, Dining Room"
+          style="min-height: 380px;"
+        ></div>
+      </Reveal>
+    </div>
+
+    <div class="grid-3" style="margin-top: var(--space-section);">
+      <Reveal delay={0}>
+        <div class="card">
+          <h2 class="card-title">Weekend Brunch</h2>
+          <p class="card-body">Saturdays and Sundays, 9 AM to noon. Eggs Benedict, breakfast tacos, crispy potatoes. Brunch here is just as good as dinner.</p>
+        </div>
+      </Reveal>
+      <Reveal delay={80}>
+        <div class="card">
+          <h2 class="card-title">Local Wines &amp; Craft Beer</h2>
+          <p class="card-body">We carry local wines from the El Dorado County wine region, plus craft beers. The Mira Flores Cabernet is a guest favorite.</p>
+        </div>
+      </Reveal>
+      <Reveal delay={160}>
+        <div class="card">
+          <h2 class="card-title">Gluten-Free Friendly</h2>
+          <p class="card-body">GF dinner rolls, sandwich bread, pasta, and buns. Multiple guests have called our GF options some of the best they've found anywhere.</p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+</Base>

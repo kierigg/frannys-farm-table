@@ -1,0 +1,132 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+
+const reviews = [
+  {
+    stars: 5,
+    quote: "The food here is out of this world and I've always had friendly and efficient service. The biggest challenge is having to choose between all the delicious options.",
+    author: 'Steve H.',
+    source: 'Google',
+    date: 'March 2025',
+    datePublished: '2025-03',
+  },
+  {
+    stars: 5,
+    quote: "The loaded mac n cheese was the best mac n cheese I've ever had, gluten-free or otherwise! The service is impeccable, and the atmosphere is county cute!",
+    author: 'Sophi',
+    source: 'Google',
+    date: 'September 2025',
+    datePublished: '2025-09',
+  },
+  {
+    stars: 5,
+    quote: "The atmosphere is cozy and fun, the servers are friendly, and the food — oh my god, the food. The bread is made fresh every day, and the mac and cheese is hands down the best in the area.",
+    author: 'Sasha',
+    source: 'Google',
+    date: 'November 2025',
+    datePublished: '2025-11',
+  },
+  {
+    stars: 5,
+    quote: "You are going to like your meal here. A good variety of food, good service, large portions. Lots of comfort food. Beautiful restaurant. 5 stars.",
+    author: 'John W.',
+    source: 'TripAdvisor',
+    date: 'April 2024',
+    datePublished: '2024-04',
+  },
+  {
+    stars: 5,
+    quote: "We had surf and turf which was great, my son had seafood cavatappi that he liked a lot. I had the blue cheese burger which was a giant. Also fresh baked cookie and ice cream for dessert.",
+    author: 'Robinson F.',
+    source: 'Google',
+    date: 'July 2025',
+    datePublished: '2025-07',
+  },
+  {
+    stars: 4,
+    quote: "Like the Burger, but other things fall short. Place has strong potential for a regular following. A little tweaks here and there would be much appreciated. I will go back.",
+    author: 'Nancy P.',
+    source: 'TripAdvisor',
+    date: 'November 2024',
+    datePublished: '2024-11',
+  },
+];
+
+const reviewSchemas = reviews.map(r => ({
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Restaurant",
+    "name": "Franny's Farm Table"
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": String(r.stars),
+    "bestRating": "5"
+  },
+  "author": {
+    "@type": "Person",
+    "name": r.author
+  },
+  "datePublished": r.datePublished,
+  "reviewBody": r.quote
+}));
+
+const stats = [
+  { number: '4.3', label: 'Google (187 reviews)' },
+  { number: '4.6', label: 'Uber Eats (43 reviews)' },
+  { number: '219', label: 'Yelp Reviews' },
+  { number: 'Est. 2023', label: 'Placerville, CA' },
+];
+---
+
+<Base
+  title="Reviews"
+  description="4.3 stars on Google, 4.6 on Uber Eats, 219 Yelp reviews. See what guests say about Franny's Farm Table in Placerville."
+  slug="reviews"
+  breadcrumb="Reviews"
+>
+  {reviewSchemas.map(schema => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  ))}
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-label">What Guests Say</p>
+      <h1 class="page-hero-title">Reviews from real diners</h1>
+    </div>
+  </div>
+
+  <section class="section" aria-label="Guest reviews">
+    <Reveal>
+      <div class="stats-row" aria-label="Review summary statistics">
+        {stats.map(stat => (
+          <div class="stat">
+            <span class="stat-number">{stat.number}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </Reveal>
+
+    <div class="grid-reviews">
+      {reviews.map((review, i) => (
+        <Reveal delay={i * 60}>
+          <ReviewCard
+            stars={review.stars}
+            quote={review.quote}
+            author={review.author}
+            source={review.source}
+            date={review.date}
+          />
+        </Reveal>
+      ))}
+    </div>
+
+    <p class="menu-footer-note" style="text-align: center; max-width: 500px; margin-left: auto; margin-right: auto;">
+      Reviews sourced from Google, TripAdvisor, and Yelp. Shown as-is from public listings.
+    </p>
+  </section>
+</Base>

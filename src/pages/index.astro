@@ -1,0 +1,239 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+
+const restaurantSchema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Franny's Farm Table",
+  "image": "https://frannysfarmtable.co/og-image.jpg",
+  "url": "https://frannysfarmtable.co",
+  "telephone": "+15307483671",
+  "email": "frannysfarmtable@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "311 Main Street",
+    "addressLocality": "Placerville",
+    "addressRegion": "CA",
+    "postalCode": "95667",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 38.7296,
+    "longitude": -120.7985
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "11:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "11:00",
+      "closes": "21:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "21:00"
+    }
+  ],
+  "servesCuisine": ["American", "Seafood", "Grill", "Steak"],
+  "priceRange": "$$",
+  "acceptsReservations": true,
+  "hasMenu": "https://frannysfarmtable.co/menu",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.3",
+    "reviewCount": "187",
+    "bestRating": "5"
+  },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Dog Friendly", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Wheelchair Accessible", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Takeout", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Delivery", "value": true }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/frannysfarmtable/",
+    "https://www.facebook.com/Frannysfarmtable/",
+    "https://www.yelp.com/biz/frannys-farm-table-placerville"
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Franny's Farm Table have gluten-free options?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We offer gluten-free dinner rolls, sandwich bread, pasta, and burger buns. Multiple guests have called our GF options some of the best they've found."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Franny's Farm Table take reservations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Reserve online at frannysfarmtable.co/reserve or call (530) 748-3671."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Franny's Farm Table dog-friendly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We are dog-friendly, wheelchair accessible, and offer free wifi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Franny's Farm Table serve brunch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Weekend brunch runs Saturdays and Sundays from 9 AM to noon. Eggs Benedict, breakfast tacos, crispy potatoes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the most popular dishes at Franny's Farm Table?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Chipotle Salad is the #1 most-ordered item. Franny's Burger is #2. The Loaded Mac & Cheese — corkscrew pasta, melted cheese, bacon, baked — is a consistent guest favorite and available gluten-free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Franny's Farm Table have a kids menu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The kids menu includes a burger, chicken fingers, grilled cheese, corn dog, and pasta options. All items are $8–$10 and served with fries or focaccia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Franny's Farm Table serve steak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The menu includes a Certified Angus Ribeye ($49) served with fingerling potatoes, fresh vegetables, and chimichurri. Steak is also available as a protein add-on for salads and in tacos."
+      }
+    }
+  ]
+};
+
+const faqs = faqSchema.mainEntity;
+---
+
+<Base
+  title="Home"
+  description="From-scratch restaurant on Main Street in Placerville. House-made soups, bread, desserts. Local ingredients, local wines. Reservations, takeout, delivery."
+  isHome={true}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-inner">
+      <p class="hero-address">311 Main Street &middot; Placerville, CA</p>
+      <h1 id="hero-heading" class="hero-title">
+        Fresh, from-scratch dishes with local ingredients
+      </h1>
+      <p class="hero-sub">
+        We cook everything in-house in a historic building on Main Street, using ingredients from local farms and producers.
+      </p>
+      <a href="/reserve" class="btn">Reserve a Table</a>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section class="section" aria-labelledby="what-we-do-heading">
+    <Reveal>
+      <span class="section-label">What We Do</span>
+      <h2 id="what-we-do-heading" class="section-title">Comfort food, done right</h2>
+      <p class="section-body">
+        We make everything in-house. Soups, bread, desserts, dressings. The menu runs from fresh-baked artisan bread and house-made soups to burgers, pastas, and salmon, all served with our own focaccia.
+      </p>
+    </Reveal>
+
+    <div class="grid-3">
+      <Reveal delay={0}>
+        <div class="card">
+          <h3 class="card-title">From-Scratch Kitchen</h3>
+          <p class="card-body">Soups, bread, desserts, dressings. All made here, every day. We run daily specials based on what's fresh and in season.</p>
+        </div>
+      </Reveal>
+      <Reveal delay={80}>
+        <div class="card">
+          <h3 class="card-title">Local Ingredients</h3>
+          <p class="card-body">We buy from local producers and carry wines from the El Dorado County wine region. Try a glass of Mira Flores Cabernet with your meal.</p>
+        </div>
+      </Reveal>
+      <Reveal delay={160}>
+        <div class="card">
+          <h3 class="card-title">Historic Main Street</h3>
+          <p class="card-body">Two floors in a historic building on Main Street in downtown Placerville. Upstairs overlooks the street. Dog-friendly, free wifi, wheelchair accessible.</p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Guest Favorites (dark section) -->
+  <div class="section--dark">
+    <div class="section-inner">
+      <Reveal>
+        <span class="section-label section-label--warm">Guest Favorites</span>
+        <h2 class="section-title section-title--light">What people are ordering</h2>
+      </Reveal>
+
+      <div class="grid-3">
+        <Reveal delay={0}>
+          <div class="card card--dark">
+            <h3 class="card-title card-title--light">Loaded Mac &amp; Cheese</h3>
+            <p class="card-body card-body--light">Multiple guests call it the best they've ever had, gluten-free or not.</p>
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <div class="card card--dark">
+            <h3 class="card-title card-title--light">Franny's Burger &middot; $22.50</h3>
+            <p class="card-body card-body--light">Our #2 most-ordered item. Served with fries. GF bun available.</p>
+          </div>
+        </Reveal>
+        <Reveal delay={160}>
+          <div class="card card--dark">
+            <h3 class="card-title card-title--light">Atlantic Salmon &middot; $45</h3>
+            <p class="card-body card-body--light">A Fork &amp; Knife favorite. Served with house-baked focaccia. GF pasta available.</p>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section faq-section" aria-labelledby="faq-heading">
+    <Reveal>
+      <span class="section-label">Common Questions</span>
+      <h2 id="faq-heading" class="section-title">Good to know</h2>
+    </Reveal>
+
+    <div class="faq-list">
+      {faqs.map((faq, i) => (
+        <Reveal delay={i * 60}>
+          <div class="faq-item">
+            <h3 class="faq-question">{faq.name}</h3>
+            <p class="faq-answer">{faq.acceptedAnswer.text}</p>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  </section>
+</Base>
