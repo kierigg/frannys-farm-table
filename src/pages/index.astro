@@ -221,24 +221,65 @@ const faqs = faqSchema.mainEntity;
     </div>
   </div>
 
-  <!-- FAQ -->
-  <section class="section faq-section" aria-labelledby="faq-heading">
-    <Reveal>
-      <span class="section-label">Common Questions</span>
-      <h2 id="faq-heading" class="section-title">Good to know</h2>
-    </Reveal>
+  <!-- FAQ (dark section) -->
+  <div class="section--dark" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <Reveal>
+        <span class="section-label section-label--light">Common Questions</span>
+        <h2 id="faq-heading" class="section-title section-title--light">Good to know</h2>
+      </Reveal>
 
-    <div class="faq-list">
-      {faqs.map((faq, i) => (
-        <Reveal delay={i * 60}>
-          <div class="faq-item">
-            <h3 class="faq-question">{faq.name}</h3>
-            <p class="faq-answer">{faq.acceptedAnswer.text}</p>
+      <div class="faq-list reveal-stagger" id="faq-accordion">
+        {faqs.map((faq, i) => (
+          <div class="accordion-item" id={`faq-item-${i}`}>
+            <button
+              class="accordion-trigger"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-btn-${i}`}
+            >
+              <span class="accordion-question">{faq.name}</span>
+              <span class="accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div
+              class="accordion-answer"
+              id={`faq-answer-${i}`}
+              role="region"
+              aria-labelledby={`faq-btn-${i}`}
+            >
+              <p class="accordion-answer-text">{faq.acceptedAnswer.text}</p>
+            </div>
           </div>
-        </Reveal>
-      ))}
+        ))}
+      </div>
     </div>
-  </section>
+  </div>
+
+<script>
+  function initAccordion() {
+    const items = document.querySelectorAll('.accordion-item');
+    items.forEach((item) => {
+      const trigger = item.querySelector('.accordion-trigger') as HTMLButtonElement | null;
+      if (!trigger) return;
+      trigger.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        // Close all
+        items.forEach((i) => {
+          i.classList.remove('active');
+          const t = i.querySelector('.accordion-trigger') as HTMLButtonElement | null;
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
+        // Open clicked if it was closed
+        if (!isActive) {
+          item.classList.add('active');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initAccordion);
+</script>
 
 <script>
   (function initHeroReveal() {
