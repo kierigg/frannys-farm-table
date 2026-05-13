@@ -927,8 +927,17 @@
   font-size: 1rem;
   color: rgba(240, 235, 227, 0.4);
   flex-shrink: 0;
-  transition: transform var(--duration-micro) ease;
   display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accordion-icon {
+    transition: transform var(--duration-micro) ease;
+  }
+
+  .accordion-answer {
+    transition: max-height var(--duration-interactive) ease;
+  }
 }
 
 .accordion-item.active .accordion-icon {
@@ -938,11 +947,10 @@
 .accordion-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height var(--duration-interactive) ease;
 }
 
 .accordion-item.active .accordion-answer {
-  max-height: 300px;
+  max-height: 500px;
 }
 
 .accordion-answer-text {

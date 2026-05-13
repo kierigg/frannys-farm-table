@@ -257,25 +257,35 @@ const faqs = faqSchema.mainEntity;
 
 <script>
   function initAccordion() {
-    const items = document.querySelectorAll('.accordion-item');
-    items.forEach((item) => {
-      const trigger = item.querySelector('.accordion-trigger') as HTMLButtonElement | null;
+    const accordion = document.getElementById('faq-accordion');
+    if (!accordion) return;
+
+    // Remove old listener if present (store on element to avoid accumulation)
+    const oldHandler = (accordion as any)._accordionHandler;
+    if (oldHandler) accordion.removeEventListener('click', oldHandler);
+
+    const handler = (e: Event) => {
+      const trigger = (e.target as HTMLElement).closest('.accordion-trigger') as HTMLButtonElement | null;
       if (!trigger) return;
-      trigger.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-        // Close all
-        items.forEach((i) => {
-          i.classList.remove('active');
-          const t = i.querySelector('.accordion-trigger') as HTMLButtonElement | null;
-          if (t) t.setAttribute('aria-expanded', 'false');
-        });
-        // Open clicked if it was closed
-        if (!isActive) {
-          item.classList.add('active');
-          trigger.setAttribute('aria-expanded', 'true');
-        }
+      const item = trigger.closest('.accordion-item') as HTMLElement | null;
+      if (!item) return;
+
+      const isActive = item.classList.contains('active');
+      // Close all
+      accordion.querySelectorAll('.accordion-item').forEach((i) => {
+        i.classList.remove('active');
+        const t = i.querySelector('.accordion-trigger') as HTMLButtonElement | null;
+        if (t) t.setAttribute('aria-expanded', 'false');
       });
-    });
+      // Open clicked if it was closed
+      if (!isActive) {
+        item.classList.add('active');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    (accordion as any)._accordionHandler = handler;
+    accordion.addEventListener('click', handler);
   }
 
   document.addEventListener('astro:page-load', initAccordion);
