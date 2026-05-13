@@ -143,15 +143,18 @@ const faqs = faqSchema.mainEntity;
 
   <!-- Hero -->
   <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-bg-placeholder" role="img" aria-label="Photo: Restaurant interior or Main Street facade — owner to provide"></div>
     <div class="hero-inner">
       <p class="hero-address">311 Main Street &middot; Placerville, CA</p>
-      <h1 id="hero-heading" class="hero-title">
+      <h1 id="hero-heading" class="hero-title" data-hero-title transition:name="page-title">
         Fresh, from-scratch dishes with local ingredients
       </h1>
       <p class="hero-sub">
         We cook everything in-house in a historic building on Main Street, using ingredients from local farms and producers.
       </p>
-      <a href="/reserve" class="btn">Reserve a Table</a>
+      <a href="/reserve" class="btn hero-cta">Reserve a Table</a>
+      <div class="hero-divider-line" aria-hidden="true"></div>
+      <span class="hero-scroll-indicator" aria-hidden="true">Scroll</span>
     </div>
   </section>
 
@@ -236,4 +239,35 @@ const faqs = faqSchema.mainEntity;
       ))}
     </div>
   </section>
+
+<script>
+  (function initHeroReveal() {
+    const titleEl = document.querySelector('[data-hero-title]') as HTMLElement | null;
+    if (!titleEl) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      const sub = document.querySelector('.hero-sub') as HTMLElement | null;
+      const cta = document.querySelector('.hero-cta') as HTMLElement | null;
+      if (sub) sub.style.opacity = '1';
+      if (cta) cta.style.opacity = '1';
+      return;
+    }
+
+    const words = titleEl.textContent?.trim().split(/\s+/) || [];
+    const wordDuration = 0.6;
+    const stagger = 0.08;
+
+    titleEl.innerHTML = words
+      .map((word, i) => `<span class="hero-word" style="animation-delay:${(i * stagger).toFixed(2)}s">${word}</span>`)
+      .join(' ');
+
+    const lastWordDelay = (words.length - 1) * stagger + wordDuration;
+    const sub = document.querySelector('.hero-sub') as HTMLElement | null;
+    const cta = document.querySelector('.hero-cta') as HTMLElement | null;
+
+    if (sub) sub.style.animationDelay = `${(lastWordDelay + 0.4).toFixed(2)}s`;
+    if (cta) cta.style.animationDelay = `${(lastWordDelay + 0.4 + 0.3).toFixed(2)}s`;
+  })();
+</script>
 </Base>

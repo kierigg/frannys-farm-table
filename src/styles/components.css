@@ -278,6 +278,72 @@
   margin-bottom: 2.5rem;
 }
 
+/* Hero photo placeholder */
+.hero-bg-placeholder {
+  position: absolute;
+  inset: 0;
+  background: rgba(61, 50, 40, 0.85);
+  z-index: 0;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero decorative line + scroll indicator */
+.hero-divider-line {
+  width: 80px;
+  height: 1px;
+  background: rgba(240, 235, 227, 0.12);
+  margin: 3rem auto 0;
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240, 235, 227, 0.3);
+  white-space: nowrap;
+}
+
+/* Hero word reveal */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: wordReveal 0.6s var(--ease-reveal) forwards;
+  }
+
+  @keyframes wordReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-sub {
+    opacity: 0;
+    animation: fadeInHero 0.5s ease forwards;
+  }
+
+  .hero-cta {
+    opacity: 0;
+    animation: fadeInHero 0.5s ease forwards;
+  }
+
+  @keyframes fadeInHero {
+    to { opacity: 1; }
+  }
+}
+
 /* ========== MENU PAGE ========== */
 .menu-note {
   font-size: 0.875rem;
