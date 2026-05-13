@@ -241,6 +241,7 @@
   display: flex;
   align-items: center;
   padding: 0 var(--padding-x);
+  position: relative;
 }
 
 .hero-inner {
@@ -248,6 +249,8 @@
   margin: 0 auto;
   width: 100%;
   padding: 8rem 0 6rem;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-address {
@@ -284,15 +287,6 @@
   inset: 0;
   background: rgba(61, 50, 40, 0.85);
   z-index: 0;
-}
-
-.hero {
-  position: relative;
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 1;
 }
 
 /* Hero decorative line + scroll indicator */
@@ -332,11 +326,13 @@
   .hero-sub {
     opacity: 0;
     animation: fadeInHero 0.5s ease forwards;
+    animation-delay: 1.5s; /* fallback if JS doesn't run */
   }
 
   .hero-cta {
     opacity: 0;
     animation: fadeInHero 0.5s ease forwards;
+    animation-delay: 1.8s; /* fallback if JS doesn't run */
   }
 
   @keyframes fadeInHero {
