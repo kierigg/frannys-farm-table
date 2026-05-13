@@ -3,6 +3,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/components.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -79,11 +80,18 @@ const breadcrumbSchema = !isHome && breadcrumb ? JSON.stringify({
     )}
 
     <slot name="head" />
+    <ClientRouter />
+    <style>
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 0.25s;
+      }
+    </style>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <Nav isHome={isHome} />
-    <main id="main-content">
+    <main id="main-content" transition:animate="fade">
       <slot />
     </main>
     <Footer />
