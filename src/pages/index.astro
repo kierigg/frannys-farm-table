@@ -168,25 +168,22 @@ const faqs = faqSchema.mainEntity;
       </p>
     </Reveal>
 
-    <div class="grid-3">
-      <Reveal delay={0}>
-        <div class="card">
-          <h3 class="card-title">From-Scratch Kitchen</h3>
-          <p class="card-body">Soups, bread, desserts, dressings. All made here, every day. We run daily specials based on what's fresh and in season.</p>
-        </div>
-      </Reveal>
-      <Reveal delay={80}>
-        <div class="card">
-          <h3 class="card-title">Local Ingredients</h3>
-          <p class="card-body">We buy from local producers and carry wines from the El Dorado County wine region. Try a glass of Mira Flores Cabernet with your meal.</p>
-        </div>
-      </Reveal>
-      <Reveal delay={160}>
-        <div class="card">
-          <h3 class="card-title">Historic Main Street</h3>
-          <p class="card-body">Two floors in a historic building on Main Street in downtown Placerville. Upstairs overlooks the street. Dog-friendly, free wifi, wheelchair accessible.</p>
-        </div>
-      </Reveal>
+    <div class="grid-3 reveal-stagger">
+      <div class="card card--numbered">
+        <span class="card-number">01</span>
+        <h3 class="card-title">From-Scratch Kitchen</h3>
+        <p class="card-body">Soups, bread, desserts, dressings. All made here, every day. We run daily specials based on what's fresh and in season.</p>
+      </div>
+      <div class="card card--numbered">
+        <span class="card-number">02</span>
+        <h3 class="card-title">Local Ingredients</h3>
+        <p class="card-body">We buy from local producers and carry wines from the El Dorado County wine region. Try a glass of Mira Flores Cabernet with your meal.</p>
+      </div>
+      <div class="card card--numbered">
+        <span class="card-number">03</span>
+        <h3 class="card-title">Historic Main Street</h3>
+        <p class="card-body">Two floors in a historic building on Main Street in downtown Placerville. Upstairs overlooks the street. Dog-friendly, free wifi, wheelchair accessible.</p>
+      </div>
     </div>
   </section>
 
