@@ -87,5 +87,24 @@ const breadcrumbSchema = !isHome && breadcrumb ? JSON.stringify({
       <slot />
     </main>
     <Footer />
+    <script>
+      function initStagger() {
+        const staggerObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                staggerObs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        document.querySelectorAll('.reveal-stagger').forEach((el) => staggerObs.observe(el));
+      }
+
+      // Re-init on each Astro page load (handles View Transitions navigation)
+      document.addEventListener('astro:page-load', initStagger);
+    </script>
   </body>
 </html>

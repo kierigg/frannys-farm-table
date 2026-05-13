@@ -16,17 +16,20 @@ const Tag = tag as any;
 </Tag>
 
 <script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
+  function initReveal() {
+    const revealObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal:not(.visible)').forEach((el) => revealObs.observe(el));
+  }
 
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  document.addEventListener('astro:page-load', initReveal);
 </script>
