@@ -280,13 +280,6 @@
   margin-bottom: 2.5rem;
 }
 
-/* Hero photo placeholder */
-.hero-bg-placeholder {
-  position: absolute;
-  inset: 0;
-  background: rgba(61, 50, 40, 0.85);
-  z-index: 0;
-}
 
 /* Hero decorative line + scroll indicator */
 .hero-divider-line {
