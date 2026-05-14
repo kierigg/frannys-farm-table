@@ -997,3 +997,27 @@
   color: rgba(240, 235, 227, 0.7);
   padding-bottom: 1.25rem;
 }
+
+/* ========== CONTACT BAND ========== */
+.contact-band-text {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--font-body);
+  color: rgba(240, 235, 227, 0.6);
+  line-height: 1.7;
+}
+
+.contact-band-link {
+  color: rgba(240, 235, 227, 0.85);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-band-link:hover {
+  color: rgba(240, 235, 227, 1);
+}
+
+.contact-band-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
