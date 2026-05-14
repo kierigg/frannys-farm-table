@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/Reveal.astro';
+import Sunflower from '../components/Sunflower.astro';
 
 const restaurantSchema = {
   "@context": "https://schema.org",
@@ -154,6 +155,7 @@ const faqs = faqSchema.mainEntity;
       <a href="/reserve" class="btn hero-cta">Reserve a Table</a>
       <div class="hero-divider-line" aria-hidden="true"></div>
     </div>
+    <Sunflower size={220} class="hero-sunflower" />
     <span class="hero-scroll-indicator" aria-hidden="true">Scroll</span>
   </section>
 
