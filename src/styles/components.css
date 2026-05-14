@@ -253,10 +253,9 @@
 }
 
 .hero-address {
-  font-family: var(--font-mono);
-  font-size: var(--font-mono-sm);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
   color: rgba(250, 248, 245, 0.5);
   margin-bottom: 1.5rem;
 }
@@ -294,11 +293,10 @@
   bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(240, 235, 227, 0.3);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: rgba(240, 235, 227, 0.35);
   white-space: nowrap;
 }
 
@@ -574,11 +572,11 @@
 }
 
 .pull-quote-attribution {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
   font-style: normal;
-  color: rgba(240, 235, 227, 0.4);
-  letter-spacing: 0.05em;
+  color: rgba(240, 235, 227, 0.45);
+  letter-spacing: 0.02em;
   display: block;
 }
 
@@ -879,10 +877,9 @@
 }
 
 .page-hero-label {
-  font-family: var(--font-mono);
-  font-size: var(--font-mono-sm);
-  letter-spacing: var(--ls-mono);
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
   color: rgba(250, 248, 245, 0.45);
   margin-bottom: 0.75rem;
 }
