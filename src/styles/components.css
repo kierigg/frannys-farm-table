@@ -1044,6 +1044,14 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ========== FAQ ========== */
 .faq-list {
   max-width: 720px;
