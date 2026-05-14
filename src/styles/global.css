@@ -196,7 +196,7 @@ h1, h2, h3, h4 {
 }
 
 .card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-accent-warm);
 }
 
 .card--dark {
@@ -277,12 +277,20 @@ h1, h2, h3, h4 {
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, box-shadow 0.15s ease, transform 0.15s ease;
   text-decoration: none;
+  box-shadow: 0 2px 0 var(--color-accent-hover);
 }
 
 .btn:hover {
   background: var(--color-accent-hover);
+  box-shadow: 0 3px 0 #1f3320;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  box-shadow: 0 0px 0 var(--color-accent-hover);
+  transform: translateY(2px);
 }
 
 .btn:focus-visible {
