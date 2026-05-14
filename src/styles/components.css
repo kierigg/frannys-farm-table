@@ -1107,7 +1107,13 @@
   }
 
   .accordion-answer {
-    transition: max-height var(--duration-interactive) ease;
+    transition: height var(--duration-interactive) cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @supports not (interpolate-size: allow-keywords) {
+    .accordion-answer {
+      transition: max-height var(--duration-interactive) cubic-bezier(0.4, 0, 0.2, 1);
+    }
   }
 }
 
@@ -1116,12 +1122,30 @@
 }
 
 .accordion-answer {
-  max-height: 0;
   overflow: hidden;
+  height: 0;
 }
 
 .accordion-item.active .accordion-answer {
-  max-height: 500px;
+  height: auto;
+}
+
+/* Smooth height-to-auto via CSS interpolate-size (Chrome 129+, Firefox 130+, Safari 18+) */
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}
+
+/* Fallback: max-height for older browsers */
+@supports not (interpolate-size: allow-keywords) {
+  .accordion-answer {
+    height: unset;
+    max-height: 0;
+  }
+  .accordion-item.active .accordion-answer {
+    max-height: 600px;
+  }
 }
 
 .accordion-answer-text {
