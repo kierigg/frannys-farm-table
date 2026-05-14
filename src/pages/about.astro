@@ -16,6 +16,7 @@ import Reveal from '../components/Reveal.astro';
     </div>
   </div>
 
+  <!-- Light story section -->
   <section class="section" aria-label="About Franny's Farm Table">
     <div class="grid-2">
       <Reveal>
@@ -37,31 +38,33 @@ import Reveal from '../components/Reveal.astro';
           class="gallery-placeholder"
           role="img"
           aria-label="Interior of Franny's Farm Table dining room"
-          data-label="Interior, Dining Room"
           style="min-height: 380px;"
-        ></div>
-      </Reveal>
-    </div>
-
-    <div class="grid-3" style="margin-top: var(--space-section);">
-      <Reveal delay={0}>
-        <div class="card">
-          <h2 class="card-title">Weekend Brunch</h2>
-          <p class="card-body">Saturdays and Sundays, 9 AM to noon. Eggs Benedict, breakfast tacos, crispy potatoes. Brunch here is just as good as dinner.</p>
-        </div>
-      </Reveal>
-      <Reveal delay={80}>
-        <div class="card">
-          <h2 class="card-title">Local Wines &amp; Craft Beer</h2>
-          <p class="card-body">We carry local wines from the El Dorado County wine region, plus craft beers. The Mira Flores Cabernet is a guest favorite.</p>
-        </div>
-      </Reveal>
-      <Reveal delay={160}>
-        <div class="card">
-          <h2 class="card-title">Gluten-Free Friendly</h2>
-          <p class="card-body">GF dinner rolls, sandwich bread, pasta, and buns. Multiple guests have called our GF options some of the best they've found anywhere.</p>
+        >
+          <span class="gallery-label">Interior, Dining Room</span>
         </div>
       </Reveal>
     </div>
   </section>
+
+  <div class="divider--accent" aria-hidden="true"></div>
+
+  <!-- Dark feature cards -->
+  <div class="section--dark">
+    <div class="section-inner">
+      <div class="grid-3 reveal-stagger">
+        <div class="card card--dark">
+          <h2 class="card-title card-title--light">Weekend Brunch</h2>
+          <p class="card-body card-body--light">Saturdays and Sundays, 9 AM to noon. Eggs Benedict, breakfast tacos, crispy potatoes. Brunch here is just as good as dinner.</p>
+        </div>
+        <div class="card card--dark">
+          <h2 class="card-title card-title--light">Local Wines &amp; Craft Beer</h2>
+          <p class="card-body card-body--light">We carry local wines from the El Dorado County wine region, plus craft beers. The Mira Flores Cabernet is a guest favorite.</p>
+        </div>
+        <div class="card card--dark">
+          <h2 class="card-title card-title--light">Gluten-Free Friendly</h2>
+          <p class="card-body card-body--light">GF dinner rolls, sandwich bread, pasta, and buns. Multiple guests have called our GF options some of the best they've found anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </Base>
