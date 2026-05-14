@@ -549,6 +549,35 @@
   text-transform: uppercase;
 }
 
+.stat-label--light {
+  color: rgba(240, 235, 227, 0.5);
+}
+
+/* ========== PULL QUOTE ========== */
+.pull-quote {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pull-quote-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(240, 235, 227, 0.85);
+  margin-bottom: 1.25rem;
+}
+
+.pull-quote-attribution {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-style: normal;
+  color: rgba(240, 235, 227, 0.4);
+  letter-spacing: 0.05em;
+  display: block;
+}
+
 /* ========== GALLERY ========== */
 .gallery-placeholder {
   aspect-ratio: 4 / 3;
