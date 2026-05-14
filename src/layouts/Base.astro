@@ -114,5 +114,8 @@ const breadcrumbSchema = !isHome && breadcrumb ? JSON.stringify({
       // Re-init on each Astro page load (handles View Transitions navigation)
       document.addEventListener('astro:page-load', initStagger);
     </script>
+    <script>
+      import '../scripts/animations.js';
+    </script>
   </body>
 </html>
