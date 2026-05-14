@@ -350,6 +350,15 @@
   max-width: 700px;
 }
 
+.menu-intro-line {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--font-body);
+  color: var(--color-text-body);
+  max-width: 500px;
+  margin-bottom: 2.5rem;
+}
+
 .menu-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -394,6 +403,8 @@
 
 .menu-category-header {
   margin-bottom: 0.5rem;
+  border-top: 2px solid var(--color-accent);
+  padding-top: 1.5rem;
 }
 
 .menu-category-title {
