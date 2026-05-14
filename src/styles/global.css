@@ -192,11 +192,16 @@ h1, h2, h3, h4 {
 .card {
   padding: var(--space-card-pad);
   border: var(--border-card);
-  transition: var(--transition-border);
+  transition: var(--transition-border),
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
 }
 
 .card:hover {
   border-color: var(--color-accent-warm);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
+              0 2px 6px rgba(196, 112, 75, 0.1);
 }
 
 .card--dark {
@@ -351,6 +356,22 @@ h1, h2, h3, h4 {
   }
 }
 
+/* Candle breath — sunflower decorative elements */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes candleBreath {
+    0%   { opacity: 0.06; transform: scale(1) rotate(0deg); }
+    30%  { opacity: 0.09; transform: scale(1.015) rotate(0.4deg); }
+    70%  { opacity: 0.065; transform: scale(0.985) rotate(-0.3deg); }
+    100% { opacity: 0.075; transform: scale(1.01) rotate(0.2deg); }
+  }
+
+  .hero-sunflower,
+  .dark-sunflower {
+    animation: candleBreath 7s ease-in-out infinite alternate;
+    transform-origin: center;
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .btn {
@@ -359,5 +380,9 @@ h1, h2, h3, h4 {
   .btn:hover,
   .btn:active {
     transform: none;
+  }
+  .card:hover {
+    transform: none;
+    box-shadow: none;
   }
 }

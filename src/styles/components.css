@@ -84,6 +84,28 @@
   text-transform: uppercase;
   text-decoration: none;
   transition: var(--transition-color);
+  position: relative;
+}
+
+.nav-links a::before,
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a::before { right: 50%; }
+.nav-links a::after  { left:  50%; }
+
+.nav-links a:hover::before,
+.nav-links a:hover::after,
+.nav-links a.active::before,
+.nav-links a.active::after {
+  width: 50%;
 }
 
 .nav--hero .nav-links a:hover {
