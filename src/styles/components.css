@@ -759,11 +759,31 @@
 /* ========== FOOTER ========== */
 .footer {
   background: var(--color-text);
-  padding: 4rem var(--padding-x) 0;
+  padding: 3rem var(--padding-x) 0;
 }
 
 .footer-inner {
   max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.footer-brand-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.footer-brand-header-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: rgba(240, 235, 227, 0.6);
+  margin-bottom: 0.75rem;
+}
+
+.footer-brand-header-divider {
+  width: 60px;
+  height: 1px;
+  background: rgba(240, 235, 227, 0.1);
   margin: 0 auto;
 }
 
