@@ -38,21 +38,48 @@ const photos = [
       </p>
     </Reveal>
 
-    <div class="grid-gallery">
-      {photos.map((photo, i) => (
-        <Reveal delay={i * 50}>
-          <div
-            class="gallery-placeholder"
-            role="img"
-            aria-label={photo.subject}
-            data-label={photo.label}
-          ></div>
-        </Reveal>
-      ))}
+    <div class="grid-gallery reveal-stagger">
+      <div class="gallery-placeholder" role="img" aria-label="Interior dining room, ground floor seating">
+        <span class="gallery-label">Interior Dining Room</span>
+      </div>
+      <div class="gallery-placeholder" role="img" aria-label="Upstairs seating area overlooking Main Street">
+        <span class="gallery-label">Upstairs Seating</span>
+      </div>
+      <div class="gallery-placeholder" role="img" aria-label="Franny's Burger with fries">
+        <span class="gallery-label">Franny's Burger</span>
+      </div>
+      <div class="gallery-placeholder" role="img" aria-label="Loaded Mac &amp; Cheese, guest favorite">
+        <span class="gallery-label">Loaded Mac &amp; Cheese</span>
+      </div>
+      <div class="gallery-placeholder" role="img" aria-label="Atlantic Salmon with house-baked focaccia">
+        <span class="gallery-label">Atlantic Salmon</span>
+      </div>
+      <div class="gallery-placeholder" role="img" aria-label="Eggs Benedict, weekend brunch">
+        <span class="gallery-label">Eggs Benedict (Brunch)</span>
+      </div>
+      <div class="gallery-placeholder" role="img" aria-label="Historic Main Street exterior, Placerville CA">
+        <span class="gallery-label">Main Street Exterior</span>
+      </div>
+      <div class="gallery-placeholder" role="img" aria-label="House-baked artisan bread, fresh daily">
+        <span class="gallery-label">Artisan Bread</span>
+      </div>
+      <div class="gallery-placeholder" role="img" aria-label="Franny's Burger close-up">
+        <span class="gallery-label">Franny's Burger close-up</span>
+      </div>
     </div>
 
     <p class="menu-footer-note" style="margin-top: 2rem;">
       All photos provided by the restaurant. Owner to upload final images.
     </p>
   </section>
+
+  <!-- Instagram CTA band -->
+  <div class="section--dark">
+    <div class="section-inner" style="padding-top: 4rem; padding-bottom: 4rem; text-align: center;">
+      <p class="instagram-cta-text">Want to see more? Follow us on Instagram.</p>
+      <a href="https://instagram.com/frannysfarmtable" class="btn" rel="noopener noreferrer" target="_blank">
+        Follow on Instagram
+      </a>
+    </div>
+  </div>
 </Base>
