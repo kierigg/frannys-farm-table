@@ -284,12 +284,12 @@ h1, h2, h3, h4 {
 
 .btn:hover {
   background: var(--color-accent-hover);
-  box-shadow: 0 3px 0 #1f3320;
+  box-shadow: 0 3px 0 var(--color-accent-deep);
   transform: translateY(-1px);
 }
 
 .btn:active {
-  box-shadow: 0 0px 0 var(--color-accent-hover);
+  box-shadow: 0 0 0 var(--color-accent-hover);
   transform: translateY(2px);
 }
 
@@ -348,5 +348,16 @@ h1, h2, h3, h4 {
 
   .grid-2 {
     gap: 2.5rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: background 0.2s ease;
+  }
+  .btn:hover,
+  .btn:active {
+    transform: none;
   }
 }

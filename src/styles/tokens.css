@@ -8,6 +8,7 @@
   --color-text-body:     #6b6560;   /* Warm gray */
   --color-accent:        #3d5a3e;   /* Olive */
   --color-accent-hover:  #2e4a2f;   /* Olive dark */
+  --color-accent-deep:   #1f3320;   /* Olive deepest */
   --color-accent-warm:   #c4704b;   /* Terracotta */
   --color-border:        #e8e4df;   /* Warm taupe */
   --color-border-dark:   rgba(250, 248, 245, 0.1);
