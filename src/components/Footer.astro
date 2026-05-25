@@ -1,4 +1,6 @@
 ---
+import Sunflower from './Sunflower.astro';
+
 const pages = [
   { href: '/', label: 'Home' },
   { href: '/menu', label: 'Menu' },
@@ -19,6 +21,7 @@ const social = [
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand-header">
+      <Sunflower size={36} class="footer-sunflower-mark" />
       <p class="footer-brand-header-name">Franny's Farm Table</p>
       <div class="footer-brand-header-divider" aria-hidden="true"></div>
     </div>

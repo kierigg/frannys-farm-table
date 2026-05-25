@@ -1,0 +1,17 @@
+---
+import Sunflower from './Sunflower.astro';
+
+interface Props {
+  dark?: boolean;
+  class?: string;
+}
+const { dark = false, class: className = '' } = Astro.props;
+---
+<div
+  class={`sunflower-divider ${dark ? 'sunflower-divider--dark' : ''} ${className}`}
+  aria-hidden="true"
+>
+  <span class="sunflower-divider__line"></span>
+  <Sunflower size={22} class="sunflower-divider__mark" />
+  <span class="sunflower-divider__line"></span>
+</div>

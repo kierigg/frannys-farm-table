@@ -124,9 +124,11 @@ h1, h2, h3, h4 {
   font-weight: 500;
   letter-spacing: var(--ls-mono);
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-sunflower-deep);
   margin-bottom: 0.75rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .section-label--warm {
@@ -134,7 +136,14 @@ h1, h2, h3, h4 {
 }
 
 .section-label--light {
-  color: rgba(250, 248, 245, 0.5);
+  color: rgba(232, 184, 75, 0.65);
+}
+
+.section-label-icon {
+  flex-shrink: 0;
+  opacity: 0.85;
+  position: relative;
+  top: -1px;
 }
 
 .section-title {
@@ -198,10 +207,10 @@ h1, h2, h3, h4 {
 }
 
 .card:hover {
-  border-color: var(--color-accent-warm);
+  border-color: var(--color-sunflower);
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
-              0 2px 6px rgba(196, 112, 75, 0.1);
+              0 2px 6px rgba(232, 184, 75, 0.15);
 }
 
 .card--dark {
@@ -236,7 +245,7 @@ h1, h2, h3, h4 {
 }
 
 .card--numbered {
-  border-top: 2px solid var(--color-accent);
+  border-top: 2px solid var(--color-sunflower);
   padding: 2.5rem;
 }
 
@@ -246,7 +255,7 @@ h1, h2, h3, h4 {
   font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 0.05em;
-  color: var(--color-accent);
+  color: var(--color-sunflower-deep);
   margin-bottom: 0.75rem;
 }
 
@@ -371,12 +380,12 @@ h1, h2, h3, h4 {
   .section-label::after {
     content: '';
     position: absolute;
-    bottom: -3px;
+    bottom: -4px;
     left: 0;
     width: 100%;
     height: 1px;
-    background: currentColor;
-    opacity: 0.35;
+    background: var(--color-sunflower);
+    opacity: 0.4;
     transform: scaleX(0);
     transform-origin: left center;
     transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
@@ -473,17 +482,52 @@ h1, h2, h3, h4 {
 /* Candle breath — sunflower decorative elements */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes candleBreath {
-    0%   { opacity: 0.06; transform: scale(1) rotate(0deg); }
-    30%  { opacity: 0.09; transform: scale(1.015) rotate(0.4deg); }
-    70%  { opacity: 0.065; transform: scale(0.985) rotate(-0.3deg); }
-    100% { opacity: 0.075; transform: scale(1.01) rotate(0.2deg); }
+    0%   { transform: scale(1) rotate(0deg); }
+    30%  { transform: scale(1.015) rotate(0.4deg); }
+    70%  { transform: scale(0.985) rotate(-0.3deg); }
+    100% { transform: scale(1.01) rotate(0.2deg); }
   }
 
-  .hero-sunflower,
-  .dark-sunflower {
-    animation: candleBreath 7s ease-in-out infinite alternate;
+  @keyframes sunflowerTurn {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .hero-sunflower {
+    animation: candleBreath 9s ease-in-out infinite alternate;
     transform-origin: center;
   }
+
+  .dark-sunflower {
+    animation: candleBreath 11s ease-in-out infinite alternate;
+    transform-origin: center;
+  }
+}
+
+/* Sunflower divider */
+.sunflower-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3.5rem auto;
+  max-width: 280px;
+  color: var(--color-sunflower);
+}
+
+.sunflower-divider--dark {
+  color: rgba(232, 184, 75, 0.55);
+}
+
+.sunflower-divider__line {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+.sunflower-divider__mark {
+  flex-shrink: 0;
+  opacity: 0.9;
 }
 
 /* Reduced motion */

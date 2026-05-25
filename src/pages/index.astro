@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/Reveal.astro';
 import Sunflower from '../components/Sunflower.astro';
+import SunflowerDivider from '../components/SunflowerDivider.astro';
 
 const restaurantSchema = {
   "@context": "https://schema.org",
@@ -155,14 +156,15 @@ const faqs = faqSchema.mainEntity;
       <a href="/reserve" class="btn hero-cta">Reserve a Table</a>
       <div class="hero-divider-line" aria-hidden="true"></div>
     </div>
-    <Sunflower size={220} class="hero-sunflower" />
+    <Sunflower size={300} class="hero-sunflower" />
+    <Sunflower size={100} class="hero-sunflower-secondary" />
     <span class="hero-scroll-indicator" aria-hidden="true">Scroll</span>
   </section>
 
   <!-- What We Do -->
   <section class="section" aria-labelledby="what-we-do-heading">
     <Reveal>
-      <span class="section-label">What We Do</span>
+      <span class="section-label"><Sunflower size={13} class="section-label-icon" />What We Do</span>
       <h2 id="what-we-do-heading" class="section-title">Comfort food, done right</h2>
       <p class="section-body">
         We make everything in-house. Soups, bread, desserts, dressings. The menu runs from fresh-baked artisan bread and house-made soups to burgers, pastas, and salmon, all served with our own focaccia.
@@ -188,13 +190,13 @@ const faqs = faqSchema.mainEntity;
     </div>
   </section>
 
-  <div class="divider--accent" aria-hidden="true"></div>
+  <SunflowerDivider />
 
   <!-- Guest Favorites (dark section) -->
   <div class="section--dark">
     <div class="section-inner">
       <Reveal>
-        <span class="section-label section-label--warm">Guest Favorites</span>
+        <span class="section-label section-label--warm"><Sunflower size={13} class="section-label-icon" />Guest Favorites</span>
         <h2 class="section-title section-title--light">What people are ordering</h2>
       </Reveal>
 
@@ -228,7 +230,7 @@ const faqs = faqSchema.mainEntity;
   <div class="section--dark" aria-labelledby="faq-heading">
     <div class="section-inner">
       <Reveal>
-        <span class="section-label section-label--light">Common Questions</span>
+        <span class="section-label section-label--light"><Sunflower size={13} class="section-label-icon" />Common Questions</span>
         <h2 id="faq-heading" class="section-title section-title--light">Good to know</h2>
       </Reveal>
 

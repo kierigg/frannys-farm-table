@@ -326,10 +326,20 @@
 
 .hero-sunflower {
   position: absolute;
-  bottom: 3rem;
-  right: 3rem;
-  color: rgba(250, 248, 245, 1);
-  opacity: 0.07;
+  bottom: 2rem;
+  right: 2.5rem;
+  color: var(--color-sunflower);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-sunflower-secondary {
+  position: absolute;
+  top: calc(var(--nav-height) + 2.5rem);
+  right: 14rem;
+  color: var(--color-sunflower);
+  opacity: 0.08;
   pointer-events: none;
   z-index: 0;
 }
@@ -338,8 +348,8 @@
   position: absolute;
   top: 2.5rem;
   right: 2.5rem;
-  color: rgba(250, 248, 245, 1);
-  opacity: 0.06;
+  color: var(--color-sunflower);
+  opacity: 0.18;
   pointer-events: none;
   z-index: 0;
 }
@@ -451,7 +461,7 @@
 
 .menu-category-header {
   margin-bottom: 0.5rem;
-  border-top: 2px solid var(--color-accent);
+  border-top: 2px solid var(--color-sunflower);
   padding-top: 1.5rem;
 }
 
@@ -506,7 +516,7 @@
   font-family: var(--font-mono);
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--color-accent);
+  color: var(--color-sunflower-deep);
   white-space: nowrap;
   margin-left: 1.5rem;
   flex-shrink: 0;
@@ -545,13 +555,13 @@
 }
 
 .review-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-sunflower);
 }
 
 .review-stars {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--color-accent);
+  color: var(--color-sunflower-deep);
   letter-spacing: 0.1em;
   margin-bottom: 0.75rem;
 }
@@ -833,6 +843,15 @@
 .footer-brand-header {
   text-align: center;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-sunflower-mark {
+  color: var(--color-sunflower);
+  opacity: 0.7;
 }
 
 .footer-brand-header-name {
@@ -840,7 +859,6 @@
   font-size: 1.25rem;
   font-weight: 400;
   color: rgba(240, 235, 227, 0.6);
-  margin-bottom: 0.75rem;
 }
 
 .footer-brand-header-divider {

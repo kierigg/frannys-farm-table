@@ -1,7 +1,7 @@
 /* Franny's Farm Table — Design Tokens */
 
 :root {
-  /* Colors — Agrarian Stillness palette */
+  /* Colors — Agrarian Warmth palette */
   --color-bg:            #faf8f5;   /* Cream */
   --color-bg-dark:       #242a20;   /* Dark olive */
   --color-text:          #1a1a1a;   /* Near-black */
@@ -10,6 +10,9 @@
   --color-accent-hover:  #2e4a2f;   /* Olive dark */
   --color-accent-deep:   #1f3320;   /* Olive deepest */
   --color-accent-warm:   #c4704b;   /* Terracotta */
+  --color-sunflower:     #E8B84B;   /* Sunflower gold */
+  --color-sunflower-deep:#C49A2A;   /* Honey deep */
+  --color-sunflower-pale:#F5E098;   /* Pale gold */
   --color-border:        #e8e4df;   /* Warm taupe */
   --color-border-dark:   rgba(250, 248, 245, 0.1);
 
