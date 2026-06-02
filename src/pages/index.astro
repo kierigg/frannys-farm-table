@@ -57,7 +57,6 @@ const restaurantSchema = {
   "amenityFeature": [
     { "@type": "LocationFeatureSpecification", "name": "Dog Friendly", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Wheelchair Accessible", "value": true },
-    { "@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Takeout", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Delivery", "value": true }
   ],
@@ -77,7 +76,7 @@ const faqSchema = {
       "name": "Does Franny's Farm Table have gluten-free options?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. We offer gluten-free dinner rolls, sandwich bread, pasta, and burger buns. Multiple guests have called our GF options some of the best they've found."
+        "text": "Yes. We offer gluten-free pasta, bread, and taco shells. Multiple guests have called our GF options some of the best they've found."
       }
     },
     {
@@ -93,7 +92,7 @@ const faqSchema = {
       "name": "Is Franny's Farm Table dog-friendly?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. We are dog-friendly, wheelchair accessible, and offer free wifi."
+        "text": "Yes. We are dog-friendly and wheelchair accessible, with seating for about 50."
       }
     },
     {
@@ -136,7 +135,7 @@ const faqs = faqSchema.mainEntity;
 
 <Base
   title="Home"
-  description="From-scratch restaurant on Main Street in Placerville. House-made soups, bread, desserts. Local ingredients, local wines. Reservations, takeout, delivery."
+  description="From-scratch restaurant on Main Street in Placerville. House-made soups, dressings, sauces, and desserts. Local wine and craft beer. Reservations, takeout, delivery."
   isHome={true}
 >
   <script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} slot="head" />
@@ -147,10 +146,10 @@ const faqs = faqSchema.mainEntity;
     <div class="hero-inner">
       <p class="hero-address">311 Main Street &middot; Placerville, CA</p>
       <h1 id="hero-heading" class="hero-title" data-hero-title transition:name="page-title">
-        Fresh, from-scratch dishes with local ingredients
+        Fresh, from-scratch cooking with a comforting table
       </h1>
       <p class="hero-sub">
-        We cook everything in-house in a historic building on Main Street, using ingredients from local farms and producers.
+        Soups, dressings, sauces, and desserts made from scratch in a historic building on Main Street. A big menu with something for everyone.
       </p>
       <a href="/reserve" class="btn hero-cta">Reserve a Table</a>
       <div class="hero-divider-line" aria-hidden="true"></div>
@@ -165,7 +164,7 @@ const faqs = faqSchema.mainEntity;
       <span class="section-label">What We Do</span>
       <h2 id="what-we-do-heading" class="section-title">Comfort food, done right</h2>
       <p class="section-body">
-        We make everything in-house. Soups, bread, desserts, dressings. The menu runs from fresh-baked artisan bread and house-made soups to burgers, pastas, and salmon, all served with our own focaccia.
+        We make our soups, dressings, sauces, and desserts from scratch. The menu runs wide — salads, burgers, wraps, tacos, pasta, steak, and salmon — so there's something for everyone, and we're glad to work with modifications.
       </p>
     </Reveal>
 
@@ -173,17 +172,17 @@ const faqs = faqSchema.mainEntity;
       <div class="card card--numbered">
         <span class="card-number">01</span>
         <h3 class="card-title">From-Scratch Kitchen</h3>
-        <p class="card-body">Soups, bread, desserts, dressings. All made here, every day. We run daily specials based on what's fresh and in season.</p>
+        <p class="card-body">Soups, dressings, sauces, and desserts, all made here. A rotating soup menu plus seasonal cookies and baked goods, so there's always something new.</p>
       </div>
       <div class="card card--numbered">
         <span class="card-number">02</span>
-        <h3 class="card-title">Local Ingredients</h3>
-        <p class="card-body">We buy from local producers and carry wines from the El Dorado County wine region. Try a glass of Mira Flores Cabernet with your meal.</p>
+        <h3 class="card-title">Local Wine &amp; Beer</h3>
+        <p class="card-body">We pour local wines from the El Dorado County wine region alongside local craft beer. Try a glass of Mira Flores Cabernet with your meal.</p>
       </div>
       <div class="card card--numbered">
         <span class="card-number">03</span>
         <h3 class="card-title">Historic Main Street</h3>
-        <p class="card-body">Two floors in a historic building on Main Street in downtown Placerville. Upstairs overlooks the street. Dog-friendly, free wifi, wheelchair accessible.</p>
+        <p class="card-body">Two floors in a historic building on Main Street in downtown Placerville, seating about 50. Upstairs overlooks the street. Dog-friendly and wheelchair accessible.</p>
       </div>
     </div>
   </section>
@@ -217,8 +216,8 @@ const faqs = faqSchema.mainEntity;
           <div class="card-photo-placeholder">
             <span class="card-photo-label">Photo: Atlantic Salmon — owner to provide</span>
           </div>
-          <h3 class="card-title card-title--light">Atlantic Salmon &middot; $45</h3>
-          <p class="card-body card-body--light">A Fork &amp; Knife favorite. Served with house-baked focaccia. GF pasta available.</p>
+          <h3 class="card-title card-title--light">Atlantic Salmon &middot; $36</h3>
+          <p class="card-body card-body--light">A Fork &amp; Knife favorite. Pan-seared and served with pea &amp; pancetta risotto.</p>
         </div>
       </div>
     </div>

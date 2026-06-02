@@ -38,6 +38,24 @@ const categories = [
     ],
   },
   {
+    id: 'dressings',
+    label: 'Dressings',
+    note: 'Made in-house from scratch. Pick one for any salad.',
+    items: [
+      { name: '1000 Island', desc: '', price: '' },
+      { name: 'Honey Mustard', desc: '', price: '' },
+      { name: 'Red Wine Vinaigrette', desc: '', price: '' },
+      { name: 'Balsamic Vinaigrette', desc: '', price: '' },
+      { name: 'Japanese Vinaigrette', desc: '', price: '' },
+      { name: 'Ranch', desc: '', price: '' },
+      { name: 'Zesty Ranch', desc: '', price: '' },
+      { name: 'Bleu Cheese', desc: '', price: '' },
+      { name: 'Caesar', desc: '', price: '' },
+      { name: 'Wasabi Cucumber', desc: '', price: '' },
+      { name: 'Oil & Vinegar', desc: '', price: '' },
+    ],
+  },
+  {
     id: 'soup',
     label: 'Soup',
     note: '',
@@ -50,7 +68,7 @@ const categories = [
   {
     id: 'handhelds',
     label: 'Handhelds',
-    note: 'Served with fries. Sub house salad or Caesar. GF bun $3.',
+    note: 'Served with fries. Sub garlic fries, sweet potato fries, a cup of soup, Caesar, or house salad. GF bun $3.',
     items: [
       { name: "Franny's Burger", desc: 'Lettuce, tomato, pickle, house dressing on a toasted bun', price: '$18' },
       { name: 'Bacon & Blue Burger', desc: 'Harris Ranch 1/2 lb, bacon, cheddar & blue cheese, onion strings, avocado, garlic aioli', price: '$25' },
@@ -137,7 +155,7 @@ const categories = [
     label: 'Desserts',
     note: '',
     items: [
-      { name: 'Cheesecake', desc: 'Rich, creamy, lightly sweet, slightly tangy', price: '$9' },
+      { name: 'Cheesecake', desc: 'Rich and creamy, lightly sweet and slightly tangy. Top it with fresh strawberries, caramel, chocolate, or strawberry sauce', price: '$9' },
       { name: 'Chocolate Chip Banana Bread', desc: 'House-made, served warm with vanilla bean ice cream', price: '$9' },
       { name: 'Chocolate Mousse', desc: 'House-made, light and intensely chocolate, fresh whipped cream', price: '$9' },
       { name: 'Cookie Nom Nom', desc: 'Warm chocolate chip cookie, add vanilla bean or chocolate brownie salted caramel ice cream', price: '$10' },
@@ -339,7 +357,7 @@ const menuSchema = {
 
 <Base
   title="Menu"
-  description="Full menu: appetizers, salads, soups, burgers, wraps, tacos, pasta, steak, salmon, kids menu, desserts, and drinks. Everything made in-house. GF options available. Placerville, CA."
+  description="Full menu: appetizers, salads, soups, burgers, wraps, tacos, pasta, steak, salmon, kids menu, desserts, and drinks. Soups, dressings, sauces, and desserts made from scratch. GF options available. Placerville, CA."
   slug="menu"
   breadcrumb="Menu"
 >
@@ -348,12 +366,12 @@ const menuSchema = {
   <div class="page-hero">
     <div class="page-hero-inner">
       <p class="page-hero-label">Our Menu</p>
-      <h1 class="page-hero-title" transition:name="page-title">Everything's made here</h1>
+      <h1 class="page-hero-title" transition:name="page-title">Something for everyone</h1>
     </div>
   </div>
 
   <section class="section" aria-label="Full menu">
-    <p class="menu-note">Everything's made here. Soups, breads, desserts, dressings — all in-house, daily.</p>
+    <p class="menu-note">Soups, dressings, sauces, and desserts — all made here from scratch. A rotating soup menu plus seasonal cookies and baked goods.</p>
     <p class="menu-intro-line">From scratch, every day.</p>
 
     <div class="menu-filter-bar" role="group" aria-label="Filter menu by category" id="menu-filters">
