@@ -5,7 +5,7 @@ interface Props {
 }
 const { size = 80, class: className = '' } = Astro.props;
 ---
-<!-- Botanical sunflower — 8 outer petals + 8 inner petals + fibonacci seed spiral -->
+<!-- Botanical sunflower — 12 petals, smooth bezier, concentric seed-head rings -->
 <svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 100 100"
@@ -18,55 +18,29 @@ const { size = 80, class: className = '' } = Astro.props;
   aria-hidden="true"
   class={className}
 >
-  <!-- Outer petals (8 × 45°, bezier teardrop, stroke-width 1.5) -->
+  <!-- 12 petals, 30° apart — wide teardrop bezier, tip at r≈39, base at r≈16 -->
   <g stroke-width="1.5">
-    <path d="M50,35 C43,26 41,15 50,12 C59,15 57,26 50,35" transform="rotate(0 50 50)"/>
-    <path d="M50,35 C43,26 41,15 50,12 C59,15 57,26 50,35" transform="rotate(45 50 50)"/>
-    <path d="M50,35 C43,26 41,15 50,12 C59,15 57,26 50,35" transform="rotate(90 50 50)"/>
-    <path d="M50,35 C43,26 41,15 50,12 C59,15 57,26 50,35" transform="rotate(135 50 50)"/>
-    <path d="M50,35 C43,26 41,15 50,12 C59,15 57,26 50,35" transform="rotate(180 50 50)"/>
-    <path d="M50,35 C43,26 41,15 50,12 C59,15 57,26 50,35" transform="rotate(225 50 50)"/>
-    <path d="M50,35 C43,26 41,15 50,12 C59,15 57,26 50,35" transform="rotate(270 50 50)"/>
-    <path d="M50,35 C43,26 41,15 50,12 C59,15 57,26 50,35" transform="rotate(315 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(0 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(30 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(60 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(90 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(120 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(150 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(180 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(210 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(240 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(270 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(300 50 50)"/>
+    <path d="M50,34 C42,27 40,16 50,11 C60,16 58,27 50,34" transform="rotate(330 50 50)"/>
   </g>
 
-  <!-- Inner petals (8 × 45°, offset 22.5°, shorter, stroke-width 1.1) -->
-  <g stroke-width="1.1">
-    <path d="M50,36 C45,31 44.5,24 50,22 C55.5,24 55,31 50,36" transform="rotate(22.5 50 50)"/>
-    <path d="M50,36 C45,31 44.5,24 50,22 C55.5,24 55,31 50,36" transform="rotate(67.5 50 50)"/>
-    <path d="M50,36 C45,31 44.5,24 50,22 C55.5,24 55,31 50,36" transform="rotate(112.5 50 50)"/>
-    <path d="M50,36 C45,31 44.5,24 50,22 C55.5,24 55,31 50,36" transform="rotate(157.5 50 50)"/>
-    <path d="M50,36 C45,31 44.5,24 50,22 C55.5,24 55,31 50,36" transform="rotate(202.5 50 50)"/>
-    <path d="M50,36 C45,31 44.5,24 50,22 C55.5,24 55,31 50,36" transform="rotate(247.5 50 50)"/>
-    <path d="M50,36 C45,31 44.5,24 50,22 C55.5,24 55,31 50,36" transform="rotate(292.5 50 50)"/>
-    <path d="M50,36 C45,31 44.5,24 50,22 C55.5,24 55,31 50,36" transform="rotate(337.5 50 50)"/>
-  </g>
+  <!-- Seed head: outer disk ring -->
+  <circle cx="50" cy="50" r="13" stroke-width="1.5"/>
 
-  <!-- Seed head disk -->
-  <circle cx="50" cy="50" r="12" stroke-width="1.5"/>
+  <!-- Seed head: concentric inner rings suggesting the spiral pattern -->
+  <circle cx="50" cy="50" r="8.5" stroke-width="0.9" stroke-opacity="0.65"/>
+  <circle cx="50" cy="50" r="4.5" stroke-width="0.9" stroke-opacity="0.65"/>
 
-  <!-- Fibonacci seed spiral (golden angle ≈ 137.5°, 21 seeds) -->
-  <g fill="currentColor" stroke="none">
-    <circle cx="50"    cy="50"    r="1.3"/>
-    <circle cx="48.07" cy="51.77" r="1.2"/>
-    <circle cx="50.27" cy="46.92" r="1.2"/>
-    <circle cx="52.76" cy="53.59" r="1.2"/>
-    <circle cx="44.85" cy="49.09" r="1.2"/>
-    <circle cx="54.93" cy="46.85" r="1.2"/>
-    <circle cx="48.34" cy="56.18" r="1.1"/>
-    <circle cx="46.80" cy="43.85" r="1.1"/>
-    <circle cx="56.96" cy="52.53" r="1.1"/>
-    <circle cx="42.74" cy="53.01" r="1.1"/>
-    <circle cx="53.50" cy="42.51" r="1.1"/>
-    <circle cx="52.61" cy="58.28" r="1.0"/>
-    <circle cx="42.15" cy="45.47" r="1.0"/>
-    <circle cx="59.22" cy="47.93" r="1.0"/>
-    <circle cx="44.37" cy="58.03" r="1.0"/>
-    <circle cx="48.67" cy="39.94" r="1.0"/>
-    <circle cx="58.03" cy="56.74" r="1.0"/>
-    <circle cx="39.20" cy="50.48" r="1.0"/>
-    <circle cx="57.86" cy="42.14" r="1.0"/>
-    <circle cx="49.50" cy="61.42" r="0.9"/>
-    <circle cx="42.47" cy="41.02" r="0.9"/>
-  </g>
+  <!-- Center dot -->
+  <circle cx="50" cy="50" r="1.8" fill="currentColor" stroke="none"/>
 </svg>

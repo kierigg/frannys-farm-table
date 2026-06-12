@@ -280,7 +280,7 @@
 
 .hero-address {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.3rem;
   letter-spacing: 0.05em;
   color: rgba(250, 248, 245, 0.5);
   margin-bottom: 1.5rem;
@@ -329,7 +329,7 @@
   bottom: 2rem;
   right: 2.5rem;
   color: var(--color-sunflower);
-  opacity: 0.22;
+  opacity: 0.38;
   pointer-events: none;
   z-index: 0;
 }
@@ -339,7 +339,7 @@
   top: calc(var(--nav-height) + 2.5rem);
   right: 14rem;
   color: var(--color-sunflower);
-  opacity: 0.08;
+  opacity: 0.13;
   pointer-events: none;
   z-index: 0;
 }
@@ -349,7 +349,7 @@
   top: 2.5rem;
   right: 2.5rem;
   color: var(--color-sunflower);
-  opacity: 0.18;
+  opacity: 0.30;
   pointer-events: none;
   z-index: 0;
 }
@@ -360,7 +360,7 @@
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   letter-spacing: 0.1em;
   color: rgba(240, 235, 227, 0.35);
   white-space: nowrap;
@@ -516,7 +516,7 @@
   font-family: var(--font-mono);
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--color-sunflower-deep);
+  color: var(--color-accent);
   white-space: nowrap;
   margin-left: 1.5rem;
   flex-shrink: 0;
@@ -560,10 +560,10 @@
 
 .review-stars {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-sunflower-deep);
-  letter-spacing: 0.1em;
-  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: var(--color-sunflower);
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
 }
 
 .review-quote {
@@ -591,9 +591,13 @@
 .stats-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 0;
   justify-content: center;
   margin-bottom: 4rem;
+}
+
+.stats-row .stat {
+  padding: 0 3rem;
 }
 
 .stat {
@@ -602,12 +606,13 @@
 
 .stat-number {
   font-family: var(--font-serif);
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-weight: 300;
   color: var(--color-accent);
   line-height: 1;
   display: block;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 }
 
 .stat-number--light {
@@ -623,7 +628,19 @@
 }
 
 .stat-label--light {
-  color: rgba(240, 235, 227, 0.5);
+  color: rgba(240, 235, 227, 0.6);
+}
+
+.stats-row .stat + .stat {
+  border-left: 1px solid rgba(240, 235, 227, 0.1);
+  padding-left: 3rem;
+}
+
+@media (max-width: 600px) {
+  .stats-row .stat + .stat {
+    border-left: none;
+    padding-left: 0;
+  }
 }
 
 /* ========== PULL QUOTE ========== */
@@ -644,7 +661,7 @@
 
 .pull-quote-attribution {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-style: normal;
   color: rgba(240, 235, 227, 0.45);
   letter-spacing: 0.02em;
@@ -970,7 +987,7 @@
 
 .page-hero-label {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.35rem;
   letter-spacing: 0.05em;
   color: rgba(250, 248, 245, 0.45);
   margin-bottom: 0.75rem;
