@@ -1,32 +1,35 @@
-/* Franny's Farm Table — Design Tokens */
+/* Franny's Farm Table — Design Tokens (Playful Farm Stand) */
 
 :root {
-  /* Colors — Agrarian Warmth palette */
-  --color-bg:            #faf8f5;   /* Cream */
-  --color-bg-dark:       #242a20;   /* Dark olive */
-  --color-text:          #1a1a1a;   /* Near-black */
-  --color-text-body:     #6b6560;   /* Warm gray */
-  --color-accent:        #3d5a3e;   /* Olive */
-  --color-accent-hover:  #2e4a2f;   /* Olive dark */
-  --color-accent-deep:   #1f3320;   /* Olive deepest */
-  --color-accent-warm:   #c4704b;   /* Terracotta */
-  --color-sunflower:     #E8B84B;   /* Sunflower gold */
-  --color-sunflower-deep:#C49A2A;   /* Honey deep */
-  --color-sunflower-pale:#F5E098;   /* Pale gold */
-  --color-border:        #e8e4df;   /* Warm taupe */
-  --color-border-dark:   rgba(250, 248, 245, 0.1);
+  /* Colors — Playful Farm Stand palette */
+  --color-cream:      #f8f4e3;   /* page background */
+  --color-olive:      #3d4a26;   /* primary: headings, buttons, nav, illustration ink */
+  --color-sunflower:  #f2c230;   /* badge fills, accents; never text on cream */
+  --color-tomato:     #dd4a2a;   /* badges, label-card frames, large display accents only */
+  --color-charcoal:   #22221f;   /* footer bg, max-contrast text */
+  --color-text-body:  #635d50;   /* body copy; 5.93:1 on cream (AA pass) */
+  --color-border:     #e6e0cd;
+
+  /* Legacy names (aliased so existing rules resolve to the new palette) */
+  --color-bg:            var(--color-cream);
+  --color-bg-dark:       var(--color-olive);
+  --color-text:          var(--color-charcoal);
+  --color-accent:        var(--color-olive);
+  --color-accent-hover:  #2f3a1e;   /* darker olive */
+  --color-accent-deep:   #232c16;   /* deepest olive */
+  --color-accent-warm:   var(--color-tomato);
+  --color-border-dark:   rgba(248, 244, 227, 0.12);
 
   /* Typography - Font Families */
   --font-serif:   'Fraunces', Georgia, serif;
   --font-sans:    'Inter', system-ui, sans-serif;
   --font-mono:    'Libre Franklin', sans-serif;
-  --font-display: 'Caveat', cursive;
 
   /* Typography - Scale */
   --font-hero:       clamp(2.75rem, 6vw, 4.5rem);
   --font-section:    clamp(2rem, 4vw, 3rem);
   --font-card:       1.25rem;
-  --font-body:       0.9375rem;
+  --font-body:       1rem;
   --font-mono-sm:    0.6875rem;
   --font-mono-md:    0.75rem;
   --font-mono-nav:   0.8125rem;
@@ -40,9 +43,9 @@
   --lh-review:   1.7;
 
   /* Tracking */
-  --ls-hero:     -0.03em;
-  --ls-section:  -0.02em;
-  --ls-card:     -0.01em;
+  --ls-hero:     -0.01em;
+  --ls-section:  -0.01em;
+  --ls-card:     0;
   --ls-mono:     0.15em;
   --ls-btn:      0.08em;
 

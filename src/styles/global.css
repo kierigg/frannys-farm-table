@@ -43,7 +43,8 @@ ul, ol {
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 800;
+  font-variation-settings: 'SOFT' 100, 'opsz' 144;
 }
 
 /* Utility: visually hidden but accessible */
@@ -66,7 +67,7 @@ h1, h2, h3, h4 {
   left: 1rem;
   padding: 0.75rem 1.5rem;
   background: var(--color-accent);
-  color: rgba(250, 248, 245, 0.95);
+  color: rgba(248, 244, 227, 0.95);
   font-family: var(--font-mono);
   font-size: var(--font-mono-sm);
   letter-spacing: var(--ls-mono);
@@ -99,16 +100,6 @@ h1, h2, h3, h4 {
   position: relative;
 }
 
-.section--dark::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-}
-
 .section--dark .section-inner {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -132,11 +123,11 @@ h1, h2, h3, h4 {
 }
 
 .section-label--warm {
-  color: var(--color-accent-warm);
+  color: var(--color-olive);
 }
 
 .section-label--light {
-  color: rgba(232, 184, 75, 0.88);
+  color: rgba(242, 194, 48, 0.88);
 }
 
 .section-label-icon {
@@ -151,13 +142,14 @@ h1, h2, h3, h4 {
   font-size: var(--font-section);
   line-height: var(--lh-section);
   letter-spacing: var(--ls-section);
-  font-weight: 400;
+  font-weight: 800;
+  font-variation-settings: 'SOFT' 100, 'opsz' 144;
   color: var(--color-text);
   margin-bottom: 1.5rem;
 }
 
 .section-title--light {
-  color: rgba(250, 248, 245, 0.92);
+  color: rgba(248, 244, 227, 0.92);
 }
 
 .section-body {
@@ -169,7 +161,7 @@ h1, h2, h3, h4 {
 }
 
 .section-body--light {
-  color: rgba(250, 248, 245, 0.7);
+  color: rgba(248, 244, 227, 0.7);
 }
 
 /* Grids */
@@ -202,15 +194,12 @@ h1, h2, h3, h4 {
   padding: var(--space-card-pad);
   border: var(--border-card);
   transition: var(--transition-border),
-              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease;
+              transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .card:hover {
   border-color: var(--color-sunflower);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1),
-              0 2px 6px rgba(232, 184, 75, 0.15);
 }
 
 .card--dark {
@@ -218,20 +207,21 @@ h1, h2, h3, h4 {
 }
 
 .card--dark:hover {
-  border-color: rgba(61, 90, 62, 0.6);
+  border-color: var(--color-sunflower);
 }
 
 .card-title {
   font-family: var(--font-serif);
   font-size: var(--font-card);
   line-height: var(--lh-card);
-  font-weight: 400;
+  font-weight: 800;
+  font-variation-settings: 'SOFT' 100, 'opsz' 144;
   color: var(--color-text);
   margin-bottom: 0.75rem;
 }
 
 .card-title--light {
-  color: rgba(250, 248, 245, 0.9);
+  color: rgba(248, 244, 227, 0.9);
 }
 
 .card-body {
@@ -241,7 +231,7 @@ h1, h2, h3, h4 {
 }
 
 .card-body--light {
-  color: rgba(250, 248, 245, 0.65);
+  color: rgba(248, 244, 227, 0.65);
 }
 
 .card--numbered {
@@ -251,17 +241,18 @@ h1, h2, h3, h4 {
 
 .card-number {
   display: block;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: 0.75rem;
 }
 
 .card-photo-placeholder {
   aspect-ratio: 3 / 2;
-  background: rgba(240, 235, 227, 0.06);
+  background: rgba(248, 244, 227, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -273,7 +264,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-style: italic;
-  color: rgba(240, 235, 227, 0.3);
+  color: rgba(248, 244, 227, 0.3);
   text-align: center;
 }
 
@@ -282,7 +273,7 @@ h1, h2, h3, h4 {
   display: inline-block;
   padding: 0.875rem 2rem;
   background: var(--color-accent);
-  color: rgba(250, 248, 245, 0.95);
+  color: rgba(248, 244, 227, 0.95);
   font-family: var(--font-mono);
   font-size: var(--font-btn);
   font-weight: 600;
@@ -291,20 +282,18 @@ h1, h2, h3, h4 {
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: background 0.2s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
   text-decoration: none;
-  box-shadow: 0 2px 0 var(--color-accent-hover);
 }
 
 .btn:hover {
   background: var(--color-accent-hover);
-  box-shadow: 0 3px 0 var(--color-accent-deep);
   transform: translateY(-1px);
 }
 
 .btn:active {
-  box-shadow: 0 0 0 var(--color-accent-hover);
-  transform: translateY(2px);
+  background: var(--color-accent-deep);
+  transform: translateY(1px);
 }
 
 .btn:focus-visible {
@@ -347,7 +336,7 @@ h1, h2, h3, h4 {
 .divider--accent-dark {
   width: 60px;
   height: 1px;
-  background: rgba(240, 235, 227, 0.1);
+  background: rgba(248, 244, 227, 0.1);
   margin: 3rem auto;
   border: none;
 }
@@ -523,10 +512,12 @@ h1, h2, h3, h4 {
 }
 
 .feature-number {
-  font-family: var(--font-display);
-  font-size: 2.75rem;
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   line-height: 1;
-  color: var(--color-sunflower);
+  color: var(--color-olive);
   opacity: 0.9;
   padding-top: 0.1em;
   flex-shrink: 0;
@@ -539,7 +530,8 @@ h1, h2, h3, h4 {
 .feature-title {
   font-family: var(--font-serif);
   font-size: var(--font-card);
-  font-weight: 400;
+  font-weight: 800;
+  font-variation-settings: 'SOFT' 100, 'opsz' 144;
   color: var(--color-text);
   margin-bottom: 0.5rem;
   line-height: var(--lh-card);
@@ -557,7 +549,7 @@ h1, h2, h3, h4 {
     gap: 1.5rem;
   }
   .feature-number {
-    font-size: 2rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -572,7 +564,7 @@ h1, h2, h3, h4 {
 }
 
 .sunflower-divider--dark {
-  color: rgba(232, 184, 75, 0.55);
+  color: rgba(242, 194, 48, 0.55);
 }
 
 .sunflower-divider__line {

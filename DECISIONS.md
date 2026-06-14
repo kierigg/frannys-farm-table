@@ -32,4 +32,24 @@
 
 ## Palette migration (filled in Phase 1)
 
+Migrated from "Agrarian Warmth / sunflower-gold" to **Playful Farm Stand** (sourced from brand-board.png).
+
+| Role | Old token/value | New token/value |
+|---|---|---|
+| Page bg | `--color-bg` #faf8f5 cream | `--color-cream` #f8f4e3 |
+| Dark surface | `--color-bg-dark` #242a20 dark olive | `--color-olive` #3d4a26 |
+| Primary / headings / nav / illustration ink | `--color-accent` #3d5a3e olive | `--color-olive` #3d4a26 |
+| Max-contrast text / footer | `--color-text` #1a1a1a near-black | `--color-charcoal` #22221f |
+| Body copy | `--color-text-body` #6b6560 | `--color-text-body` #635d50 (5.93:1 on cream, AA) |
+| Warm accent | `--color-accent-warm` #c4704b terracotta | `--color-tomato` #dd4a2a (badges/frames/large display only) |
+| Gold accent | `--color-sunflower` #E8B84B (+deep #C49A2A / pale #F5E098) | `--color-sunflower` #f2c230 (badge fills/accents; never text on cream) |
+| Border | `--color-border` #e8e4df | `--color-border` #e6e0cd |
+| Display font | `--font-display` 'Caveat' | removed; Fraunces SOFT axis carries display weight |
+
+- Legacy token names (`--color-bg`, `--color-bg-dark`, `--color-accent`, `--color-accent-hover`, `--color-accent-deep`, `--color-accent-warm`, `--color-border-dark`) retained as aliases pointing at new palette so existing rules resolve without a full sweep.
+- Typography: Fraunces opsz + SOFT axis (wght 600-900) replaces multi-weight Caveat/Fraunces load; Inter 400-600 body; Libre Franklin 600/700 for labels/badges.
+- Body font-size 0.9375rem -> 1rem; hero/section/card tracking loosened (-0.03/-0.02/-0.01em -> -0.01/-0.01/0).
+- New components: `Badge.astro` (6 sticker variants), `src/components/illustrations/` (Tomato, Lemon, OliveSprig, Squash, HerbSprig, LeafyGreens) — produce-only per board (farmer/person art rejected).
+- Purge verified: grep of src for #c4704b, #3d5a3e, #1a1a1a, Caveat, #E8B84B, sunflower-deep/pale, Espresso/Linen returns zero matches.
+
 ## Contrast table (filled in Phase 6)

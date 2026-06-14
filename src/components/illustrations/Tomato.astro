@@ -1,0 +1,14 @@
+---
+/* Linocut tomato. Calyx ink = currentColor; body fixed tomato red. */
+interface Props { size?: number; class?: string; }
+const { size = 64, class: className = '' } = Astro.props;
+---
+<svg width={size} height={size} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class={className}>
+  <!-- body, squat and slightly lopsided -->
+  <path d="M32 18c12.6-.8 22.4 6.6 22 18.2C53.6 47.6 44 55 31.6 54.6 19.6 54.2 10 47 10.4 35.8 10.8 25 19.8 18.8 32 18Z" fill="#dd4a2a"/>
+  <!-- print-line highlight -->
+  <path d="M17 32c1.6-4.6 5-7.8 9.6-9.4 1.2-.4 1.8 1 .8 1.8-3.6 2.6-6.2 5.2-7.8 8.6-.7 1.4-3.1.4-2.6-1Z" fill="#f8f4e3" opacity="0.55"/>
+  <!-- calyx -->
+  <path d="M32 19.4c-2.8-2.2-6.6-3-10-2 2.6 1.8 5.4 2.8 8 3-1.8 1.4-3 3.2-3.4 5.4 2.4-1 4.2-2.4 5.4-4.4 1.2 2 3 3.4 5.4 4.4-.4-2.2-1.6-4-3.4-5.4 2.6-.2 5.4-1.2 8-3-3.4-1-7.2-.2-10 2Z" fill="currentColor"/>
+  <path d="M31 13c.4-2 .8-3.6 1.8-5.4.8 1.8 1.2 3.6 1 5.6-.2 1.4-3 1.2-2.8-.2Z" fill="currentColor"/>
+</svg>
