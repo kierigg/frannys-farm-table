@@ -19,7 +19,7 @@
 ### Baseline
 - Build clean before changes (Astro 6.3.1, 6 pages, sitemap OK). Node >=22.12.0 required.
 - Pre-existing unstaged design iteration committed separately as 2a34145 before redesign began.
-- No netlify.toml existed; deploy was failing per handoff.md (Node 18 default). Added in this effort.
+- No netlify.toml existed; deploy was failing per handoff.md (Node 18 default). Created 2026-06-14: command `npm run build`, publish `dist`, NODE_VERSION 22.
 
 ### Asset provenance
 - brand-board.png copied from ~/Downloads (ChatGPT board, Jun 2 2026, "BOARD 1: COMMERCIAL ANCHOR - GRAZA FARM STAND").

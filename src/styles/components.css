@@ -993,6 +993,100 @@
   line-height: 1.1;
 }
 
+/* Page hero rendered inside a dark band (e.g. Reviews): use light ink */
+.section--dark .page-hero-label {
+  color: var(--color-sunflower);
+}
+.section--dark .page-hero-title {
+  color: var(--color-cream);
+}
+
+/* ========== HERO CTA ROW ========== */
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+/* ========== GHOST BUTTON ========== */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-olive);
+  box-shadow: inset 0 0 0 2px var(--color-olive);
+}
+.btn--ghost:hover {
+  background: var(--color-olive);
+  color: var(--color-cream);
+}
+.hero-cta.btn--ghost {
+  color: var(--color-cream);
+  box-shadow: inset 0 0 0 2px var(--color-cream);
+}
+.hero-cta.btn--ghost:hover {
+  background: var(--color-cream);
+  color: var(--color-olive);
+}
+
+/* ========== VISIT ACTIONS ========== */
+.visit-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.visit-action {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.5rem 1.5rem 2.5rem;
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-cream);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.visit-action:hover {
+  border-color: var(--color-tomato);
+  transform: translateY(-3px);
+}
+.visit-action-label {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--color-olive);
+}
+.visit-action-desc {
+  color: var(--color-text-body);
+  font-size: var(--font-body);
+  line-height: 1.5;
+}
+.visit-action-arrow {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.25rem;
+  color: var(--color-tomato);
+  font-size: 1.25rem;
+}
+
+/* ========== VISIT MAP ========== */
+.visit-map {
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+.visit-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.visit-tour-link {
+  margin-top: 1rem;
+}
+
 /* ========== REVEAL ========== */
 .reveal {
   opacity: 0;

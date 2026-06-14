@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import Reveal from '../components/Reveal.astro';
+import { nap, hoursDisplay, features, toastActions, toast } from '../data/restaurant.ts';
+
+// Google Maps embed + 360 tour are best-guess placeholders (DECISIONS: MAPS-VERIFY with owner).
+const mapsEmbed =
+  'https://www.google.com/maps?q=311+Main+Street,+Placerville,+CA+95667&output=embed';
+const tour360 = 'https://www.google.com/maps/place/311+Main+St,+Placerville,+CA+95667';
+---
+
+<Base
+  title="Visit"
+  description="Visit Franny's Farm Table at 311 Main Street, Placerville CA. Reserve a table, order online, buy gift cards, or join rewards. Open Mon-Sun."
+  slug="visit"
+  breadcrumb="Visit"
+>
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-label">Plan Your Visit</p>
+      <h1 class="page-hero-title" transition:name="page-title">Come see us on Main Street</h1>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="visit-actions-heading">
+    <Reveal>
+      <h2 id="visit-actions-heading" class="section-title">Reserve, order, and more</h2>
+      <p class="section-body">
+        Everything below opens in our Toast ordering system in a new tab.
+      </p>
+    </Reveal>
+
+    <div class="visit-actions reveal-stagger" role="list">
+      {toastActions.map(action => (
+        <a
+          class="visit-action"
+          href={action.href}
+          target="_blank"
+          rel="noopener"
+          role="listitem"
+        >
+          <span class="visit-action-label">{action.label}</span>
+          <span class="visit-action-desc">{action.desc}</span>
+          <span class="visit-action-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-label="Location and contact details">
+    <div class="grid-2">
+      <Reveal>
+        <div class="info-card">
+          <div class="info-card-section">
+            <span class="info-card-label">Address</span>
+            <p class="info-card-value">{nap.streetAddress}<br />{nap.locality}, {nap.region} {nap.postalCode}</p>
+          </div>
+
+          <hr class="info-card-divider" />
+
+          <div class="info-card-section">
+            <span class="info-card-label">Phone</span>
+            <p class="info-card-value"><a href={nap.phoneHref}>{nap.phone}</a></p>
+          </div>
+
+          <div class="info-card-section">
+            <span class="info-card-label">Email</span>
+            <p class="info-card-value"><a href={`mailto:${nap.email}`}>{nap.email}</a></p>
+          </div>
+
+          <hr class="info-card-divider" />
+
+          <div class="info-card-section">
+            <span class="info-card-label">Hours</span>
+            <p class="info-card-value">
+              {hoursDisplay.map(h => (<>{h.days} {h.time}<br /></>))}
+            </p>
+          </div>
+
+          <hr class="info-card-divider" />
+
+          <div class="info-card-section">
+            <span class="info-card-label">Features</span>
+            <p class="info-card-value">{features.join(' \u00B7 ')}</p>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal delay={100}>
+        <div>
+          <div class="visit-map">
+            <iframe
+              src={mapsEmbed}
+              title="Map to Franny's Farm Table, 311 Main Street, Placerville CA"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <a class="btn btn--ghost visit-tour-link" href={tour360} target="_blank" rel="noopener">
+            View the 360&deg; tour
+          </a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Contact band -->
+  <div class="section--dark">
+    <div class="section-inner" style="padding-top: 3rem; padding-bottom: 3rem; text-align: center;">
+      <p class="contact-band-text">
+        Questions? Call us at <a href={nap.phoneHref} class="contact-band-link">{nap.phone}</a>
+        or email <a href={`mailto:${nap.email}`} class="contact-band-link">{nap.email}</a>
+      </p>
+    </div>
+  </div>
+</Base>

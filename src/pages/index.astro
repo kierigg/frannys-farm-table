@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Reveal from '../components/Reveal.astro';
 import Sunflower from '../components/Sunflower.astro';
 import SunflowerDivider from '../components/SunflowerDivider.astro';
+import { toast } from '../data/restaurant.ts';
 
 const restaurantSchema = {
   "@context": "https://schema.org",
@@ -28,13 +29,7 @@ const restaurantSchema = {
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-      "opens": "11:00",
-      "closes": "20:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Friday",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       "opens": "11:00",
       "closes": "21:00"
     },
@@ -86,7 +81,7 @@ const faqSchema = {
       "name": "Does Franny's Farm Table take reservations?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Reserve online at frannysfarmtable.co/reserve or call (530) 748-3671."
+        "text": "Yes. Reserve online through our Visit page at frannysfarmtable.co/visit or call (530) 748-3671."
       }
     },
     {
@@ -153,7 +148,10 @@ const faqs = faqSchema.mainEntity;
       <p class="hero-sub">
         We cook everything in-house in a historic building on Main Street, using ingredients from local farms and producers.
       </p>
-      <a href="/reserve" class="btn hero-cta">Reserve a Table</a>
+      <div class="hero-cta-row">
+        <a href={toast.reserve} class="btn hero-cta" target="_blank" rel="noopener">Reserve a Table</a>
+        <a href={toast.order} class="btn btn--ghost hero-cta" target="_blank" rel="noopener">Order Online</a>
+      </div>
       <div class="hero-divider-line" aria-hidden="true"></div>
     </div>
     <Sunflower size={300} class="hero-sunflower" />
@@ -320,9 +318,15 @@ const faqs = faqSchema.mainEntity;
     const wordDuration = 0.6;
     const stagger = 0.08;
 
-    titleEl.innerHTML = words
-      .map((word, i) => `<span class="hero-word" style="animation-delay:${(i * stagger).toFixed(2)}s">${word}</span>`)
-      .join(' ');
+    titleEl.textContent = '';
+    words.forEach((word, i) => {
+      const span = document.createElement('span');
+      span.className = 'hero-word';
+      span.style.animationDelay = `${(i * stagger).toFixed(2)}s`;
+      span.textContent = word;
+      titleEl.appendChild(span);
+      titleEl.appendChild(document.createTextNode(' '));
+    });
 
     const lastWordDelay = (words.length - 1) * stagger + wordDuration;
     const sub = document.querySelector('.hero-sub') as HTMLElement | null;

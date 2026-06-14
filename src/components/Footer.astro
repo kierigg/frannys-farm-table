@@ -1,5 +1,6 @@
 ---
 import Sunflower from './Sunflower.astro';
+import { toast } from '../data/restaurant.ts';
 
 const pages = [
   { href: '/', label: 'Home' },
@@ -7,7 +8,14 @@ const pages = [
   { href: '/about', label: 'About' },
   { href: '/reviews', label: 'Reviews' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/reserve', label: 'Reserve' },
+  { href: '/visit', label: 'Visit' },
+];
+
+const order = [
+  { href: toast.reserve, label: 'Reserve a Table' },
+  { href: toast.order, label: 'Order Online' },
+  { href: toast.giftCards, label: 'Gift Cards' },
+  { href: toast.loyalty, label: 'Rewards' },
 ];
 
 const social = [
@@ -39,6 +47,17 @@ const social = [
         <ul class="footer-links" role="list">
           {pages.map(p => (
             <li><a href={p.href}>{p.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <span class="footer-col-title">Order &amp; Gift</span>
+        <ul class="footer-links" role="list">
+          {order.map(o => (
+            <li>
+              <a href={o.href} rel="noopener" target="_blank">{o.label}</a>
+            </li>
           ))}
         </ul>
       </div>

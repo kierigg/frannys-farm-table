@@ -5,5 +5,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   output: 'static',
   site: 'https://frannysfarmtable.co',
+  redirects: {
+    '/reserve': '/visit',
+  },
   integrations: [sitemap()],
 });
