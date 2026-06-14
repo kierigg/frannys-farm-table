@@ -25,6 +25,7 @@
 - brand-board.png copied from ~/Downloads (ChatGPT board, Jun 2 2026, "BOARD 1: COMMERCIAL ANCHOR - GRAZA FARM STAND").
 - logo-source.svg = frannys_route_1_supporting_floral_top_right_transparent-optimized.svg from ~/Downloads.
 - Board's farmer/person illustrations explicitly rejected; produce + barn only.
+- Logo marks derived from logo-source.svg (Phase 2): 816-path traced woodcut. Programmatically classified fills by luminance/hue — dropped the light-shade background field (transparent), unified ~687 near-black barn paths to single ink #22221f, recolored 10 gold-ray paths #e7ab36->#f2c230, kept 21 sage-leaf paths (#6b6a4a). Stripped one stray left-gutter artifact path. svgo mergePaths cut 215KB->88KB. Square viewBox 27 104.5 570 570. Light variant maps ink+sage->cream #f8f4e3 for dark surfaces. Outputs: public/logo/logo-mark.svg, logo-mark-light.svg; favicon set (svg/32/16/apple-touch/favicon.ico); og-image.jpg (1200x630, barn on cream, placeholder pending owner photo). Barn is primary mark; no monogram.
 
 ## Judgment calls
 - Reservation CTA uses tables.toasttab.com GUID URL (explicit Toast Tables surface); book.toasttab.com alternate recorded above.
