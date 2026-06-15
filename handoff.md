@@ -1,109 +1,35 @@
-# Handoff — Franny's Farm Table
+# Handoff
 
 ## Goal
-
-Get the Franny's Farm Table website live on Netlify (connected to `kierigg/frannys-farm-table` GitHub repo, deploys on push to `main`). The site is a fully built Astro 6 static restaurant site with all visual polish complete — it just needs the deployment plumbing working.
-
----
+Ship the Franny's Farm Table Astro site, fully migrated to the "Playful Farm Stand" design system, live on Netlify (`kierigg/frannys-farm-table`, deploys on push to `main`). 7-phase redesign (Phases 0-6). **All phases 0-6 complete and committed.** Remaining action: get Kieran's OK to push (push triggers the Netlify deploy).
 
 ## Current State
+- **Build:** Clean. `npm run build` = 6 pages / 7 routes (home, menu, about, reviews, gallery, `/visit`, plus `/reserve` redirect stub). Node >=22.12.0. Astro 6.3.1.
+- **Git:** ~9 commits ahead of `origin/main`, **NOT pushed**. Phase 6 changes staged/uncommitted (see below). Pushing is an approval gate (deploys).
+- **Phases 0-6:** complete. 0-3 done in a prior session; 4 (promos + content reconcile), 5 (SEO/AIO), and 6 (verification) done this session.
+- **netlify.toml:** present (Node 22, publish `dist`). Old deploy blocker fixed.
 
-- **Build:** Clean. 6 pages, zero errors locally.
-- **GitHub:** `main` branch is 1 commit ahead of origin (unstaged changes not yet committed — see below).
-- **Netlify:** Connected to the repo but showing nothing. Root cause is almost certainly one of: wrong publish directory (`dist`), wrong build command (`npm run build`), or Node version too old (project requires `>=22.12.0`, Netlify defaults to 18).
-- **Design:** Fully complete. Two rounds of visual polish landed — soul pass (olive hero, Caveat font, grain texture, tactile buttons) + full animation + sunflower pass. A second design iteration (feature-strip layout, opacity bumps, SVG refinements) is sitting unstaged.
+## What's Changed (this session — Phase 6, uncommitted)
+- **Dead-CSS/JS purge.** Removed orphaned selectors: `.nav--transparent`, `.card--numbered`, `.card-number` (+ `.stamped`, `@keyframes stampIn`, nth-child stagger), `.page-top`, `.divider`/`.divider--accent`/`.divider--accent-dark`, and the full reserve-form block (`.reserve-form`, `.form-field`*, `.form-row`, `.form-confirmation`*) — orphaned when reservations moved to Toast Tables in Phase 3. Removed dead JS `initNumberStamp()` in `animations.js`. Removed unused tokens `--ls-card`, `--space-inline`, `--duration-stagger`. Kept `--color-accent-warm` (intentional alias).
+- **a11y fix.** `visit.astro` action grid: dropped `role="list"`/anchor `role="listitem"` that were stripping native link semantics.
+- **DECISIONS.md.** Filled the Phase 6 section: full WCAG contrast table (computed ratios for all fg/bg pairs), a11y pass results (0 HIGH, 1 MED fixed, deferred best-practice notes), purge log, carried owner-verify flags.
+- Files touched: `src/styles/{tokens,global,components}.css`, `src/scripts/animations.js`, `src/pages/visit.astro`, `DECISIONS.md`, `handoff.md`. Also untracked `docs/superpowers/plans/*` (3 plan files, ignorable).
+- **Codex audit of the Phase 6 diff: clean, no findings.** Build clean post-purge.
 
----
-
-## Files In Progress
-
-| File | Status |
-|------|--------|
-| `src/styles/global.css` | Unstaged: feature-strip CSS added, `card-number` color reverted to `--color-accent`, size bumped to 1.2rem |
-| `src/styles/components.css` | Unstaged: opacity bumps on sunflower watermarks, font-size bumps on address/scroll indicator, menu price color reverted |
-| `src/components/Sunflower.astro` | Unstaged: SVG rebuilt — 12 petals at 30° (was 8+8 at 45°/22.5°), seed head revised |
-| `src/pages/index.astro` | Unstaged: numbered cards replaced with `.feature-strip` / `.feature-item` layout |
-| `src/pages/reviews.astro` | Unstaged: minor change (1 line deleted) |
-
----
-
-## What's Changed (This Session + Prior Sessions)
-
-### Design — Soul Pass (all committed, pushed)
-- `--color-bg-dark` pushed to `#242a20` (dark olive)
-- Caveat handwritten font added via Google Fonts, applied to card numbers, address, scroll indicator, page labels, pull quote attribution via `--font-display` token
-- Chalkboard grain SVG texture on all dark surfaces (`::before` pseudo-elements)
-- Tactile press-in button (shadow lifts/presses), warm terracotta card hovers
-
-### Design — Sunflower + Gold Brand Color (committed, pushed as `16b0f4e`)
-- Sunflower gold token added: `--color-sunflower: #E8B84B`, `--color-sunflower-deep`, `--color-sunflower-pale`
-- `src/components/Sunflower.astro` — botanical SVG (16-petal bezier + fibonacci seed spiral)
-- `src/components/SunflowerDivider.astro` — sunflower + rule divider replacing plain `<hr>` between sections
-- Hero sunflower: gold, 300px, 22% opacity (upper-right echo at 8%)
-- Reviews dark banner sunflower: gold, 18% opacity
-- Section labels: inline 13px sunflower icon + gold underline draw animation
-- Menu prices, review stars, card numbers, category borders all use sunflower gold
-- Footer brand mark: 36px sunflower above restaurant name
-
-### Animations (all committed, pushed)
-- A: Nav draw-from-center underline
-- B: Heading mask lift (clip-path, JS observer)
-- C+I: Organic card stagger (varied Y offsets 48/28/38px, non-uniform easing)
-- D: Candle breath on sunflowers
-- E: Card number stamp entrance (scale + rotate)
-- F: Pull quote blur-to-focus reveal
-- G: Section label underline draw
-- H: Accordion smooth height-to-auto (interpolate-size + max-height fallback)
-- J: Card lift hover with spring easing
-- `src/scripts/animations.js` — IntersectionObserver module, re-inits on `astro:page-load`
-- All animations respect `prefers-reduced-motion`
-
-### Legibility Fix (committed, pushed)
-- `.stat-number--light` variant (cream on dark)
-- `.nav--hero .nav-links a.active` override to cream
-
-### Unstaged Design Iteration (NOT YET COMMITTED)
-- Feature-strip layout: replaced 3 equal numbered cards on homepage with horizontal list layout (`feature-item` with large left-column number)
-- Sunflower SVG: 12 petals at 30° instead of 8+8; simpler/cleaner at small sizes
-- Opacity bumps: hero sunflower 22%→38%, echo 8%→13%, reviews sunflower 18%→30%
-- Font sizes: address 1rem→1.3rem, scroll indicator 0.9rem→1.1rem, card-number 0.9rem→1.2rem
-- Color reverts: `card-number` and menu prices back to `--color-accent` (olive) from `--color-sunflower-deep`
-- Section label `--light` variant opacity 0.65→0.88
-
----
-
-## Failed Attempts
-
-### Netlify deployment showing blank
-- **Not yet resolved.** Site builds clean locally but Netlify shows nothing.
-- Likely causes (in order of probability):
-  1. **Node version:** Project requires `>=22.12.0`. Netlify defaults to Node 18. Fix: add `NODE_VERSION = 22` env var in Netlify site settings, or add `netlify.toml` (see Next Steps).
-  2. **Wrong publish directory:** Must be `dist`. Netlify sometimes guesses wrong.
-  3. **Wrong build command:** Must be `npm run build`. If Netlify ran a different command the output dir won't exist.
-- Check Netlify deploy logs for the actual error — the log will show exactly which step failed.
-
----
+## Earlier this session (already committed)
+- **Phase 4** (`7abbbc7`): `promos` content collection (`src/content.config.ts`, zod schema), home "On the Calendar" strip surfacing active promos. Seed `girls-night-out.md` is `active:false` (one-time past event, unverified — owner flips to publish). Price/copy reconcile: featured dishes moved into `restaurant.ts` `featuredDishes` single-source, aligned to menu page. Design polish (`5ae43cf`): produce SVG accents on Guest Favorites cards, promo badge stacking, olive schedule label.
+- **Phase 5** (`ab2a94d`): SEO/AIO — Restaurant + Menu + Review JSON-LD linked via `@id` entity graph, geo meta + robots in `Base.astro`, OG image dims/alt, `entityId`/`foundingDate` in `restaurant.ts`, `llms.txt`, sitemap priority/changefreq/lastmod. Removed `aggregateRating` from Restaurant schema (Google penalty risk).
 
 ## Next Steps
+1. **Commit Phase 6** (CSS/JS purge + a11y fix + DECISIONS): suggested `chore: phase 6 verification — dead-css purge, a11y fix, contrast table`.
+2. **Ask Kieran before pushing** the ~10 commits (push deploys to Netlify). After deploy, walk all 7 routes: Toast links open new tab, `/reserve`->`/visit` redirect works, animations fire, mobile holds.
 
-1. **Fix Netlify deployment** — Add `netlify.toml` to the repo root to lock in build settings:
-   ```toml
-   [build]
-     command   = "npm run build"
-     publish   = "dist"
+## Open owner-verify flags (carried to launch, all in DECISIONS.md)
+MENU-VERIFY (items/prices vs Toast admin), HOURS-VERIFY (Mon-Fri 11-9 / Sat-Sun 9-9), MAPS-VERIFY (maps embed + 360 tour are placeholders), PROMO-VERIFY ("Girls Night Out" seeded `active:false`). og-image.jpg is a branded placeholder pending owner photo.
 
-   [build.environment]
-     NODE_VERSION = "22"
-   ```
-   Then commit, push, and trigger a new Netlify deploy. This is the single most likely fix.
+## Deferred (best-practice, non-blocking — owner/Kieran call)
+- New-tab links on index/menu/gallery/Footer lack a per-link "opens in new tab" SR cue (`/visit` states it globally). menu filter buttons expose active state via class only, not `aria-pressed`. Neither is a WCAG failure.
+- Designer MED/LOW polish: promo spacing, ghost CTA copy, label opacity, card hover lift.
+- Full-menu single-source refactor (menu items still inline in `menu.astro`; `featuredDishes` only covers the 3 home cards).
 
-2. **Commit the unstaged design iteration** — The feature-strip layout and SVG/opacity refinements are sitting unstaged. They build clean. Commit with:
-   ```bash
-   git add src/components/Sunflower.astro src/pages/index.astro src/pages/reviews.astro src/styles/components.css src/styles/global.css
-   git commit -m "feat: feature-strip layout, sunflower SVG refinement, opacity/size bumps"
-   git push origin main
-   ```
-
-3. **Verify live site** — Once Netlify deploys, walk through all 6 pages and check: animations fire on scroll, sunflowers render in gold, accordion opens smoothly, mobile layout holds.
-
-4. **Optional — SunflowerDivider review** — The `SunflowerDivider` component was added in the gold pass but may need visual QA between sections (spacing, alignment at mobile widths).
+Notes: DECISIONS.md is ground truth for resolved URLs/judgment calls. ai-stack rule: codex-audit each diff before declaring done (done for Phase 6). Approval gates: ask before push/publish. No em dashes.

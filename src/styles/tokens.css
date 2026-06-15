@@ -45,7 +45,6 @@
   /* Tracking */
   --ls-hero:     -0.01em;
   --ls-section:  -0.01em;
-  --ls-card:     0;
   --ls-mono:     0.15em;
   --ls-btn:      0.08em;
 
@@ -54,7 +53,6 @@
   --space-nav-top:   8rem;
   --space-card-pad:  2rem;
   --space-grid-gap:  2rem;
-  --space-inline:    0.5rem;
   --max-width:       1100px;
   --padding-x:       2rem;
 
@@ -73,7 +71,6 @@
   /* Animation */
   --ease-reveal:         cubic-bezier(0.25, 0.1, 0.25, 1);
   --duration-reveal:     0.6s;
-  --duration-stagger:    0.1s;
   --duration-interactive: 0.3s;
   --duration-micro:      0.2s;
 

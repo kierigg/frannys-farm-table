@@ -61,4 +61,39 @@ Migrated from "Agrarian Warmth / sunflower-gold" to **Playful Farm Stand** (sour
 - Price reconcile: home "Guest Favorites" cards diverged from menu (Franny's Burger $22.50 vs menu $18; Atlantic Salmon $45 vs $36; salmon blurb said focaccia/GF-pasta vs menu's pea & pancetta risotto). Fixed by moving featured dishes into `restaurant.ts` `featuredDishes` (single source), prices/copy aligned to menu page. <!-- MENU-VERIFY -->
 - Known tradeoff (codex flag, deferred): full menu items still live inline in `menu.astro`, not a shared store. `featuredDishes` only covers the 3 home cards. A full menu single-source refactor is out of Phase 4 scope; revisit if drift recurs.
 
-## Contrast table (filled in Phase 6)
+## Phase 6 — verification (2026-06-14)
+
+### Contrast table (WCAG 2.1, computed)
+Thresholds: normal text AA 4.5:1, large/bold (>=18.66px or 24px) AA 3.0:1, AAA 7.0:1. Ratios computed from sRGB relative luminance.
+
+| Foreground | Background | Hex pair | Ratio | Verdict / usage |
+|---|---|---|---|---|
+| olive | cream | #3d4a26 / #f8f4e3 | 8.63:1 | AAA — headings, nav, section labels, links on cream. PASS |
+| charcoal | cream | #22221f / #f8f4e3 | 14.46:1 | AAA — max-contrast text. PASS |
+| body | cream | #635d50 / #f8f4e3 | 5.93:1 | AA normal (fails AAA) — body copy. PASS |
+| tomato | cream | #dd4a2a / #f8f4e3 | 3.74:1 | Fails AA normal; passes AA large. CONSTRAINED — badges/frames/large display only, never body text |
+| sunflower | cream | #f2c230 / #f8f4e3 | 1.52:1 | FAIL. BANNED as text. Decorative SVG/badge-fill/border only (token comment enforces) |
+| cream | olive | #f8f4e3 / #3d4a26 | 8.63:1 | AAA — dark-section headings + body. PASS |
+| sunflower | olive | #f2c230 / #3d4a26 | 5.68:1 | AA normal — section labels on dark. PASS |
+| tomato | olive | #dd4a2a / #3d4a26 | 2.31:1 | FAIL. Not used as text on olive — avoid |
+| cream | charcoal | #f8f4e3 / #22221f | 14.46:1 | AAA — footer. PASS |
+| olive | sunflower | #3d4a26 / #f2c230 | 5.68:1 | AA normal — text on sunflower badge. PASS |
+| charcoal | sunflower | #22221f / #f2c230 | 9.52:1 | AAA — text on sunflower badge. PASS |
+| cream | tomato | #f8f4e3 / #dd4a2a | 3.74:1 | AA large only — CTA/badge text large weight only. CONSTRAINED |
+| charcoal | tomato | #22221f / #dd4a2a | 3.86:1 | AA large only. CONSTRAINED |
+
+Guardrails confirmed in code: sunflower never rendered as text on cream (decorative `color` on aria-hidden SVGs, badge fills, borders only). Tomato-as-text restricted to large/display per token usage. All page body/heading pairs land AA+.
+
+### Accessibility pass
+- 0 HIGH findings. Confirmed clean: every `<img>`/SVG has alt or `aria-hidden`/`role=img`; one `<h1>` per page, no skipped heading levels; all icon-only controls labeled (hamburger, close, brand, FAQ accordion, review stars); `<html lang="en">` + focus-revealed skip-link to `#main-content`; every `target="_blank"` carries `rel="noopener"`; `prefers-reduced-motion` honored (JS early-returns, CSS gated behind `no-preference` with `reduce` overrides); no `onclick`/role=button on divs; maps iframe has `title`.
+- FIXED (MED): `visit.astro` action grid dropped `role="list"` + anchor `role="listitem"` — those overrides were stripping native link semantics from screen readers.
+- DEFERRED (best-practice, owner call): new-tab links on index/menu/gallery/Footer lack a per-link "opens in new tab" SR cue (the `/visit` page states it globally at the section intro). menu filter buttons are keyboard-operable but expose active state via class only, not `aria-pressed`/tablist. Neither is a WCAG failure.
+
+### Dead-CSS / dead-JS purge (final grep, verified zero markup/`var()` usage before delete)
+- Removed selectors: `.nav--transparent`, `.card--numbered`, `.card-number` (+ `.stamped` stagger, `@keyframes stampIn`, nth-child delays), `.page-top`, `.divider`, `.divider--accent`, `.divider--accent-dark`, and the entire reserve-form block (`.reserve-form`, `.form-field`* descendants, `.form-row`, `.form-confirmation`*). Reserve form went away when reservations moved to Toast Tables (Phase 3); these were orphaned styles.
+- Removed dead JS: `initNumberStamp()` in `animations.js` (+ its `initAll` call) — targeted the now-removed `.card-number` nodes that nothing renders.
+- Removed unused tokens: `--ls-card`, `--space-inline`, `--duration-stagger`. Kept `--color-accent-warm` (intentional legacy alias, documented above).
+- Post-purge `npm run build` clean (6 pages, 7 routes incl. `/reserve` redirect). Grep for all removed identifiers returns zero (excluding live `sunflower-divider`/`info-card-divider`/`hero-divider-line`/`footer-brand-header-divider`).
+
+### Open owner-verify flags carried to launch
+MENU-VERIFY (items/prices vs Toast admin), HOURS-VERIFY (Mon-Fri 11-9 / Sat-Sun 9-9), MAPS-VERIFY (maps embed + 360 tour are placeholders), PROMO-VERIFY ("Girls Night Out" seeded `active:false`, owner flips to publish). og-image.jpg is a branded placeholder pending owner photo.

@@ -30,14 +30,13 @@ const tour360 = 'https://www.google.com/maps/place/311+Main+St,+Placerville,+CA+
       </p>
     </Reveal>
 
-    <div class="visit-actions reveal-stagger" role="list">
+    <div class="visit-actions reveal-stagger">
       {toastActions.map(action => (
         <a
           class="visit-action"
           href={action.href}
           target="_blank"
           rel="noopener"
-          role="listitem"
         >
           <span class="visit-action-label">{action.label}</span>
           <span class="visit-action-desc">{action.desc}</span>
