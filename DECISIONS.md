@@ -53,4 +53,12 @@ Migrated from "Agrarian Warmth / sunflower-gold" to **Playful Farm Stand** (sour
 - New components: `Badge.astro` (6 sticker variants), `src/components/illustrations/` (Tomato, Lemon, OliveSprig, Squash, HerbSprig, LeafyGreens) — produce-only per board (farmer/person art rejected).
 - Purge verified: grep of src for #c4704b, #3d5a3e, #1a1a1a, Caveat, #E8B84B, sunflower-deep/pale, Espresso/Linen returns zero matches.
 
+## Phase 4 — promos + content reconcile (2026-06-14)
+
+- Added `promos` content collection (`src/content.config.ts`, glob loader, zod schema: title, schedule, summary, badge?, active, verified, order). Markdown lives in `src/content/promos/`.
+- Home page surfaces active promos in an "On the Calendar" strip via `getCollection('promos', p => p.data.active)`; section hidden when none active.
+- Seed `girls-night-out.md`: owner confirmed it was a **one-time event, NOT recurring** (earlier "Every Saturday" was wrong). Unverified + past, so seeded `active: false` (draft) — does not publish. Owner edits + flips active/verified to surface. <!-- PROMO-VERIFY -->
+- Price reconcile: home "Guest Favorites" cards diverged from menu (Franny's Burger $22.50 vs menu $18; Atlantic Salmon $45 vs $36; salmon blurb said focaccia/GF-pasta vs menu's pea & pancetta risotto). Fixed by moving featured dishes into `restaurant.ts` `featuredDishes` (single source), prices/copy aligned to menu page. <!-- MENU-VERIFY -->
+- Known tradeoff (codex flag, deferred): full menu items still live inline in `menu.astro`, not a shared store. `featuredDishes` only covers the 3 home cards. A full menu single-source refactor is out of Phase 4 scope; revisit if drift recurs.
+
 ## Contrast table (filled in Phase 6)

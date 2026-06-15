@@ -63,6 +63,28 @@ export const social = {
   yelp: 'https://yelp.com/biz/frannys-farm-table-placerville',
 } as const;
 
+// Guest-favorite dishes surfaced on the home page. Prices reconciled to the
+// menu page (single source of truth) to prevent cross-page drift — the home
+// cards previously diverged (Burger $22.50 vs menu $18, Salmon $45 vs $36).
+// <!-- MENU-VERIFY: owner to confirm names/prices against Toast admin -->
+export const featuredDishes = [
+  {
+    name: 'Loaded Mac & Cheese',
+    price: '$24',
+    blurb: "Multiple guests call it the best they've ever had, gluten-free or not.",
+  },
+  {
+    name: "Franny's Burger",
+    price: '$18',
+    blurb: 'Our #2 most-ordered item. Served with fries. GF bun available.',
+  },
+  {
+    name: 'Atlantic Salmon',
+    price: '$36',
+    blurb: 'A Fork & Knife favorite. Pan-seared, served with pea & pancetta risotto.',
+  },
+] as const;
+
 // Toast action surfaces used on the Visit hub and in the footer.
 export const toastActions = [
   {

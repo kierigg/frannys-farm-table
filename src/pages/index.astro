@@ -1,9 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Reveal from '../components/Reveal.astro';
 import Sunflower from '../components/Sunflower.astro';
 import SunflowerDivider from '../components/SunflowerDivider.astro';
-import { toast } from '../data/restaurant.ts';
+import Badge from '../components/Badge.astro';
+import { toast, featuredDishes } from '../data/restaurant.ts';
+
+// Active promos only, sorted by `order`.
+const promos = (await getCollection('promos', (p) => p.data.active)).sort(
+  (a, b) => a.data.order - b.data.order
+);
 
 const restaurantSchema = {
   "@context": "https://schema.org",
@@ -194,6 +201,31 @@ const faqs = faqSchema.mainEntity;
     </div>
   </section>
 
+  {promos.length > 0 && (
+    <section class="section" aria-labelledby="promos-heading">
+      <Reveal>
+        <span class="section-label"><Sunflower size={13} class="section-label-icon" />On the Calendar</span>
+        <h2 id="promos-heading" class="section-title">What's happening</h2>
+      </Reveal>
+
+      <div class="promo-strip reveal-stagger">
+        {promos.map((promo) => (
+          <article class={`promo-card${promo.data.badge ? '' : ' promo-card--no-badge'}`}>
+            {promo.data.badge && (
+              <Badge variant={promo.data.badge} size={92} class="promo-card-badge" />
+            )}
+            <div class="promo-card-body">
+              <p class="promo-card-schedule">{promo.data.schedule}</p>
+              <h3 class="promo-card-title">{promo.data.title}</h3>
+              <p class="promo-card-summary">{promo.data.summary}</p>
+              <a href={toast.reserve} class="btn btn--ghost promo-card-cta" target="_blank" rel="noopener">Reserve a Table</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
   <SunflowerDivider />
 
   <!-- Guest Favorites (dark section) -->
@@ -205,27 +237,15 @@ const faqs = faqSchema.mainEntity;
       </Reveal>
 
       <div class="grid-3 reveal-stagger">
-        <div class="card card--dark">
-          <div class="card-photo-placeholder">
-            <span class="card-photo-label">Photo: Loaded Mac &amp; Cheese — owner to provide</span>
+        {featuredDishes.map((dish) => (
+          <div class="card card--dark">
+            <div class="card-photo-placeholder">
+              <span class="card-photo-label">Photo: {dish.name} — owner to provide</span>
+            </div>
+            <h3 class="card-title card-title--light">{dish.name} &middot; {dish.price}</h3>
+            <p class="card-body card-body--light">{dish.blurb}</p>
           </div>
-          <h3 class="card-title card-title--light">Loaded Mac &amp; Cheese</h3>
-          <p class="card-body card-body--light">Multiple guests call it the best they've ever had, gluten-free or not.</p>
-        </div>
-        <div class="card card--dark">
-          <div class="card-photo-placeholder">
-            <span class="card-photo-label">Photo: Franny's Burger — owner to provide</span>
-          </div>
-          <h3 class="card-title card-title--light">Franny's Burger &middot; $22.50</h3>
-          <p class="card-body card-body--light">Our #2 most-ordered item. Served with fries. GF bun available.</p>
-        </div>
-        <div class="card card--dark">
-          <div class="card-photo-placeholder">
-            <span class="card-photo-label">Photo: Atlantic Salmon — owner to provide</span>
-          </div>
-          <h3 class="card-title card-title--light">Atlantic Salmon &middot; $45</h3>
-          <p class="card-body card-body--light">A Fork &amp; Knife favorite. Served with house-baked focaccia. GF pasta available.</p>
-        </div>
+        ))}
       </div>
     </div>
   </div>
