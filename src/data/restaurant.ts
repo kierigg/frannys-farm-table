@@ -14,6 +14,12 @@ export const nap = {
   website: 'https://frannysfarmtable.co',
 } as const;
 
+// Canonical entity @id for the schema.org graph — all pages reference this so
+// AI/search engines resolve one Restaurant entity. Geo + founding single-sourced.
+export const entityId = 'https://frannysfarmtable.co/#restaurant';
+export const geo = { latitude: 38.7296, longitude: -120.7985 } as const;
+export const foundingDate = '2023';
+
 // Toast canonical URLs (DECISIONS Phase 0).
 export const toast = {
   order: 'https://order.toasttab.com/online/frannys-farm-table-311-main-street',

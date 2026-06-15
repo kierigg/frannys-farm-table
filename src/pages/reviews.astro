@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Reveal from '../components/Reveal.astro';
 import ReviewCard from '../components/ReviewCard.astro';
 import Sunflower from '../components/Sunflower.astro';
+import { entityId } from '../data/restaurant.ts';
 
 const reviews = [
   {
@@ -60,6 +61,7 @@ const reviewSchemas = reviews.map(r => ({
   "@type": "Review",
   "itemReviewed": {
     "@type": "Restaurant",
+    "@id": entityId,
     "name": "Franny's Farm Table"
   },
   "reviewRating": {
