@@ -204,10 +204,25 @@ h1, h2, h3, h4 {
 
 .card--dark {
   border: var(--border-dark);
+  position: relative;
 }
 
 .card--dark:hover {
   border-color: var(--color-sunflower);
+}
+
+/* Produce illustration accent, top-right of dark Guest Favorites cards.
+   currentColor ink set to cream so linocut detail reads on the olive ground. */
+.promo-fav-illustration {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: block;
+  line-height: 0;
+  color: var(--color-cream);
+  opacity: 0.92;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .card-title {
@@ -562,18 +577,14 @@ h1, h2, h3, h4 {
 }
 
 .promo-card {
-  display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 1.5rem;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
   padding: var(--space-card-pad);
   border: var(--border-card);
   border-radius: var(--radius);
   background: var(--color-cream);
-}
-
-.promo-card--no-badge {
-  grid-template-columns: 1fr;
 }
 
 .promo-card-badge {
@@ -586,7 +597,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-tomato);
+  color: var(--color-olive);
   margin-bottom: 0.35rem;
 }
 
@@ -613,8 +624,6 @@ h1, h2, h3, h4 {
 
 @media (max-width: 480px) {
   .promo-card {
-    grid-template-columns: 1fr;
-    justify-items: start;
     gap: 1rem;
   }
 }

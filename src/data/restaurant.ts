@@ -78,16 +78,19 @@ export const featuredDishes = [
     name: 'Loaded Mac & Cheese',
     price: '$24',
     blurb: "Multiple guests call it the best they've ever had, gluten-free or not.",
+    illustration: 'Squash',
   },
   {
     name: "Franny's Burger",
     price: '$18',
     blurb: 'Our #2 most-ordered item. Served with fries. GF bun available.',
+    illustration: 'Tomato',
   },
   {
     name: 'Atlantic Salmon',
     price: '$36',
     blurb: 'A Fork & Knife favorite. Pan-seared, served with pea & pancetta risotto.',
+    illustration: 'Lemon',
   },
 ] as const;
 

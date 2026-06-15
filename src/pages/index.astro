@@ -5,7 +5,13 @@ import Reveal from '../components/Reveal.astro';
 import Sunflower from '../components/Sunflower.astro';
 import SunflowerDivider from '../components/SunflowerDivider.astro';
 import Badge from '../components/Badge.astro';
+import Tomato from '../components/illustrations/Tomato.astro';
+import Lemon from '../components/illustrations/Lemon.astro';
+import Squash from '../components/illustrations/Squash.astro';
 import { toast, featuredDishes, entityId, foundingDate } from '../data/restaurant.ts';
+
+// Map illustration name -> component for the Guest Favorites cards.
+const dishIllustration = { Tomato, Lemon, Squash };
 
 // Active promos only, sorted by `order`.
 const promos = (await getCollection('promos', (p) => p.data.active)).sort(
@@ -206,7 +212,7 @@ const faqs = faqSchema.mainEntity;
 
       <div class="promo-strip reveal-stagger">
         {promos.map((promo) => (
-          <article class={`promo-card${promo.data.badge ? '' : ' promo-card--no-badge'}`}>
+          <article class="promo-card">
             {promo.data.badge && (
               <Badge variant={promo.data.badge} size={92} class="promo-card-badge" />
             )}
@@ -233,15 +239,23 @@ const faqs = faqSchema.mainEntity;
       </Reveal>
 
       <div class="grid-3 reveal-stagger">
-        {featuredDishes.map((dish) => (
+        {featuredDishes.map((dish) => {
+          const DishIllustration = dishIllustration[dish.illustration];
+          return (
           <div class="card card--dark">
+            {DishIllustration && (
+              <span class="promo-fav-illustration" aria-hidden="true">
+                <DishIllustration size={44} />
+              </span>
+            )}
             <div class="card-photo-placeholder">
               <span class="card-photo-label">Photo: {dish.name} — owner to provide</span>
             </div>
             <h3 class="card-title card-title--light">{dish.name} &middot; {dish.price}</h3>
             <p class="card-body card-body--light">{dish.blurb}</p>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </div>
